@@ -15,23 +15,26 @@ namespace TicTacToe.Test
         }
 
         [Test]
-        public void ReturnAnyPlayerMoveForEmptyBoard()
+        public void ReturnAnyFirstMove()
         {
-            var player = new Player();
+            var game = new TicTacToeGame();
             var board = new List<string>();
+            var playerGlyph = "X";
+            var playerIndex = 0;
 
-            var actualMove = player.TakeTurn(board);
+            var expectedBoard = new List<string>(new[] {playerGlyph});
 
-            Assert.Less(actualMove, 10);
-            Assert.GreaterOrEqual(actualMove, 0);
+            var actualBoard = game.NextBoard(board, playerIndex, playerGlyph);
+
+            CollectionAssert.AreEqual(expectedBoard, actualBoard);
         }
     }
 
-    public class Player
+    public class TicTacToeGame
     {
-        public int TakeTurn(List<string> board)
+        public List<string> NextBoard(List<string> board, int i, string playerGlyph)
         {
-            return 0;
+            return new List<string>(new[] {playerGlyph});
         }
     }
 }
