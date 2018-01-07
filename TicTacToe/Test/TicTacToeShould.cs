@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Media;
 using NUnit.Framework;
 
 namespace TicTacToe.Test
@@ -14,35 +15,23 @@ namespace TicTacToe.Test
         }
 
         [Test]
-        public void ReturnAnyBoardAfterTurnOne()
+        public void ReturnAnyPlayerMoveForEmptyBoard()
         {
-            var inputBoard = new Board(new string[9]);
-            var playerMove = 0;
-            var playerGlyph = "X";
+            var player = new Player();
+            var board = new List<string>();
 
-            var expectedBoard = new Board(new[]{"X"});
+            var actualMove = player.TakeTurn(board);
 
-            var actualBoard = inputBoard.AddGlyph(playerMove, playerGlyph);
-
-            CollectionAssert.AreEquivalent(expectedBoard, actualBoard);
+            Assert.Less(actualMove, 10);
+            Assert.GreaterOrEqual(actualMove, 0);
         }
     }
 
-    public class Board : IEnumerable
+    public class Player
     {
-        private readonly string[] _glyphs;
-        public Board(string[] glyphs)
+        public int TakeTurn(List<string> board)
         {
-            _glyphs = glyphs;
-        }
-        public Board AddGlyph(int index, string playerGlyph)
-        {
-            return new Board(new[] {"X"});
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return _glyphs.GetEnumerator();
+            return 0;
         }
     }
 }
