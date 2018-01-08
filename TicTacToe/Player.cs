@@ -4,7 +4,7 @@ namespace TicTacToe
 {
     public class Player
     {
-        public int TakeTurn(List<string> board)
+        public int TakeTurn(IReadOnlyList<string> board)
         {
             return 0;
         }

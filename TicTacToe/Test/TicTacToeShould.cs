@@ -29,12 +29,4 @@ namespace TicTacToe.Test
             CollectionAssert.AreEqual(expectedBoard, actualBoard);
         }
     }
-
-    public class TicTacToeGame
-    {
-        public List<string> NextBoard(List<string> board, int i, string playerGlyph)
-        {
-            return new List<string>(new[] {playerGlyph});
-        }
-    }
 }
