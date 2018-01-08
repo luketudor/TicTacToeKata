@@ -13,9 +13,9 @@ namespace TicTacToe.Test
         [Test]
         public void ReturnAnyPlayerMoveForEmptyBoard()
         {
-            var player = new Player();
+            var player = new Player(PlayerGlyph.Cross);
 
-            var actualMove = player.TakeTurn(new List<string>());
+            var actualMove = player.TakeTurn(new List<PlayerGlyph>());
 
             Assert.Less(actualMove, 10);
             Assert.GreaterOrEqual(actualMove, 0);

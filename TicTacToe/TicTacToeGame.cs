@@ -4,18 +4,24 @@ namespace TicTacToe
 {
     public class TicTacToeGame
     {
-        public TicTacToeGame()
+        private IReadOnlyList<PlayerGlyph> _currentBoard;
+        private Player _currentPlayer;
+
+        public TicTacToeGame() : this(new List<PlayerGlyph>(), new Player(PlayerGlyph.Cross))
         {
         }
 
-        internal TicTacToeGame(IReadOnlyList<PlayerGlyph> previousBoard, PlayerGlyph currentPlayer)
+        internal TicTacToeGame(IReadOnlyList<PlayerGlyph> currentBoard, Player currentPlayer)
         {
-            
+            _currentBoard = currentBoard;
+            _currentPlayer = currentPlayer;
         }
 
         public IReadOnlyList<PlayerGlyph> NextBoard()
         {
-            return new List<PlayerGlyph>(new[] {PlayerGlyph.Cross});
+            var list = new List<PlayerGlyph>(_currentBoard);
+            list.Insert(_currentPlayer.TakeTurn(_currentBoard), _currentPlayer.Glyph);
+            return list;
         }
     }
 }

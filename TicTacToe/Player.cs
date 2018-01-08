@@ -4,7 +4,14 @@ namespace TicTacToe
 {
     public class Player
     {
-        public int TakeTurn(IReadOnlyList<string> board)
+        public PlayerGlyph Glyph { get; }
+
+        public Player(PlayerGlyph glyph)
+        {
+            Glyph = glyph;
+        }
+
+        public int TakeTurn(IReadOnlyList<PlayerGlyph> board)
         {
             return 0;
         }
