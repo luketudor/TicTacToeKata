@@ -15,7 +15,7 @@ namespace TicTacToe.Test
         {
             var player = new Player(PlayerGlyph.Cross);
 
-            var actualMove = player.TakeTurn(new List<PlayerGlyph>());
+            var actualMove = player.TakeTurn(new PlayerGlyph[0]);
 
             Assert.Less(actualMove, 10);
             Assert.GreaterOrEqual(actualMove, 0);
@@ -26,7 +26,7 @@ namespace TicTacToe.Test
         {
             var player = new ComputerPlayer(PlayerGlyph.Naught);
 
-            var actualMove = player.TakeTurn(new List<PlayerGlyph>(new[] {PlayerGlyph.Cross}));
+            var actualMove = player.TakeTurn(new[] {PlayerGlyph.Cross});
 
             Assert.Less(actualMove, 10);
             Assert.GreaterOrEqual(actualMove, 1);
