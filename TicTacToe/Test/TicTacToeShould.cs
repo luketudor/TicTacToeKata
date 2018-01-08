@@ -18,15 +18,25 @@ namespace TicTacToe.Test
         public void ReturnAnyFirstMove()
         {
             var game = new TicTacToeGame();
-            var board = new List<string>();
-            var playerGlyph = "X";
-            var playerIndex = 0;
 
-            var expectedBoard = new List<string>(new[] {playerGlyph});
+            var expectedBoard = new List<string>(new[] {"X"});
 
-            var actualBoard = game.NextBoard(board, playerIndex, playerGlyph);
+            var actualBoard = game.NextBoard();
 
-            CollectionAssert.AreEqual(expectedBoard, actualBoard);
+            CollectionAssert.AreEquivalent(expectedBoard, actualBoard);
+        }
+
+        [Ignore("Not implemented yet")]
+        [Test]
+        public void ReturnAnySecondMove()
+        {
+            var game = new TicTacToeGame(new List<string>(new[] {"X"}), "O");
+
+            var expectedBoard = new List<string>(new[] {"X", "O"});
+
+            var actualBoard = game.NextBoard();
+
+            CollectionAssert.AreEquivalent(expectedBoard, actualBoard);
         }
     }
 }

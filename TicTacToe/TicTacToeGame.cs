@@ -4,9 +4,18 @@ namespace TicTacToe
 {
     public class TicTacToeGame
     {
-        public List<string> NextBoard(IReadOnlyList<string> board, int index, string playerGlyph)
+        public TicTacToeGame()
         {
-            return new List<string>(new[] {playerGlyph});
+        }
+
+        internal TicTacToeGame(IReadOnlyList<string> previousBoard, string currentPlayer)
+        {
+            
+        }
+
+        public IReadOnlyList<string> NextBoard()
+        {
+            return new List<string>(new[] {"X"});
         }
     }
 }
