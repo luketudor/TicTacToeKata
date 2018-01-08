@@ -1,19 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Media;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace TicTacToe.Test
 {
     [TestFixture]
     public class TicTacToeShould
-    {
-        [Test]
-        public void TestTest()
-        {
-            Assert.Pass();
-        }
-
+    { 
         [Test]
         public void ReturnAnyFirstMove()
         {
@@ -34,6 +25,19 @@ namespace TicTacToe.Test
 
             var expectedBoard = new[] {PlayerGlyph.Cross, PlayerGlyph.Naught};
 
+            var actualBoard = game.NextBoard();
+
+            CollectionAssert.AreEquivalent(expectedBoard, actualBoard);
+        }
+
+        [Test]
+        public void ReturnFirstTwoMoves()
+        {
+            var game = new TicTacToeGame();
+
+            var expectedBoard = new[] { PlayerGlyph.Cross, PlayerGlyph.Naught };
+
+            game.NextBoard();
             var actualBoard = game.NextBoard();
 
             CollectionAssert.AreEquivalent(expectedBoard, actualBoard);
