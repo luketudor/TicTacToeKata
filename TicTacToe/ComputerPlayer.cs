@@ -2,13 +2,20 @@
 
 namespace TicTacToe
 {
-    public class ComputerPlayer : Player
+    public class ComputerPlayer : IPlayer
     {
-        public ComputerPlayer(PlayerGlyph glyph) : base(glyph)
+        private readonly PlayerGlyph _glyph;
+        public ComputerPlayer(PlayerGlyph glyph)
         {
+           _glyph = glyph;
         }
 
-        public override int TakeTurn(IReadOnlyList<PlayerGlyph> board)
+        public PlayerGlyph GetGlyph()
+        {
+            return _glyph;
+        }
+
+        public int TakeTurn(IReadOnlyList<PlayerGlyph> board)
         {
             return board.Count;
         }

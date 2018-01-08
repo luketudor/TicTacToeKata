@@ -13,7 +13,7 @@ namespace TicTacToe.Test
         [Test]
         public void ReturnAnyPlayerMoveForEmptyBoard()
         {
-            var player = new Player(PlayerGlyph.Cross);
+            var player = new ComputerPlayer(PlayerGlyph.Cross);
 
             var actualMove = player.TakeTurn(new PlayerGlyph[0]);
 

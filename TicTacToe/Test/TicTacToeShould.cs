@@ -30,7 +30,7 @@ namespace TicTacToe.Test
         public void ReturnAnySecondMove()
         {
             var game = new TicTacToeGame(new List<PlayerGlyph>(new[] {PlayerGlyph.Cross}),
-                new Player(PlayerGlyph.Naught));
+                new ComputerPlayer(PlayerGlyph.Naught));
 
             var expectedBoard = new List<PlayerGlyph>(new[] {PlayerGlyph.Cross, PlayerGlyph.Naught});
 
