@@ -49,7 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComputerPlayer.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="IPlayer.cs" />
     <Compile Include="PlayerGlyph.cs" />
     <Compile Include="Test\PlayerShould.cs" />
     <Compile Include="TicTacToeGame.cs" />
