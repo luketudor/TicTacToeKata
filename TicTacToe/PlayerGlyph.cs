@@ -3,6 +3,7 @@
     public enum PlayerGlyph
     {
         Naught,
-        Cross
+        Cross,
+        Empty
     }
 }
