@@ -20,12 +20,11 @@ namespace TicTacToe.Test
         [Test]
         public void ReturnAnySecondMove()
         {
-            var player2 = new ComputerPlayer(PlayerGlyph.Naught);
             var game = new TicTacToeGame(
                 new ComputerPlayer(PlayerGlyph.Cross),
-                player2,
+                new ComputerPlayer(PlayerGlyph.Naught),
                 new[] { PlayerGlyph.Cross },
-                player2);
+                false);
 
             var expectedBoard = new[] {PlayerGlyph.Cross, PlayerGlyph.Naught};
 
