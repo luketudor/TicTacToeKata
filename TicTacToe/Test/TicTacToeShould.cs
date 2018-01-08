@@ -8,7 +8,7 @@ namespace TicTacToe.Test
         [Test]
         public void ReturnAnyFirstMove()
         {
-            var game = new TicTacToeGame();
+            var game = new TicTacToeGame(new ComputerPlayer(PlayerGlyph.Cross), new ComputerPlayer(PlayerGlyph.Naught));
 
             var expectedBoard = new[] {PlayerGlyph.Cross};
 
@@ -20,8 +20,12 @@ namespace TicTacToe.Test
         [Test]
         public void ReturnAnySecondMove()
         {
-            var game = new TicTacToeGame(new[] {PlayerGlyph.Cross},
-                new ComputerPlayer(PlayerGlyph.Naught));
+            var player2 = new ComputerPlayer(PlayerGlyph.Naught);
+            var game = new TicTacToeGame(
+                new ComputerPlayer(PlayerGlyph.Cross),
+                player2,
+                new[] { PlayerGlyph.Cross },
+                player2);
 
             var expectedBoard = new[] {PlayerGlyph.Cross, PlayerGlyph.Naught};
 
@@ -33,7 +37,9 @@ namespace TicTacToe.Test
         [Test]
         public void ReturnFirstTwoMoves()
         {
-            var game = new TicTacToeGame();
+            var game = new TicTacToeGame(
+                new ComputerPlayer(PlayerGlyph.Cross),
+                new ComputerPlayer(PlayerGlyph.Naught));
 
             var expectedBoard = new[] { PlayerGlyph.Cross, PlayerGlyph.Naught };
 
