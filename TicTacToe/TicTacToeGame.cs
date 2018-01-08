@@ -8,14 +8,14 @@ namespace TicTacToe
         {
         }
 
-        internal TicTacToeGame(IReadOnlyList<string> previousBoard, string currentPlayer)
+        internal TicTacToeGame(IReadOnlyList<PlayerGlyph> previousBoard, PlayerGlyph currentPlayer)
         {
             
         }
 
-        public IReadOnlyList<string> NextBoard()
+        public IReadOnlyList<PlayerGlyph> NextBoard()
         {
-            return new List<string>(new[] {"X"});
+            return new List<PlayerGlyph>(new[] {PlayerGlyph.Cross});
         }
     }
 }

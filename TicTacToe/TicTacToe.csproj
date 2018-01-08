@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Player.cs" />
+    <Compile Include="PlayerGlyph.cs" />
     <Compile Include="Test\PlayerShould.cs" />
     <Compile Include="TicTacToeGame.cs" />
     <Compile Include="Test\TicTacToeShould.cs" />

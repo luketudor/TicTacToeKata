@@ -19,7 +19,7 @@ namespace TicTacToe.Test
         {
             var game = new TicTacToeGame();
 
-            var expectedBoard = new List<string>(new[] {"X"});
+            var expectedBoard = new List<PlayerGlyph>(new[] {PlayerGlyph.Cross});
 
             var actualBoard = game.NextBoard();
 
@@ -30,9 +30,9 @@ namespace TicTacToe.Test
         [Test]
         public void ReturnAnySecondMove()
         {
-            var game = new TicTacToeGame(new List<string>(new[] {"X"}), "O");
+            var game = new TicTacToeGame(new List<PlayerGlyph>(new[] {PlayerGlyph.Cross}), PlayerGlyph.Naught);
 
-            var expectedBoard = new List<string>(new[] {"X", "O"});
+            var expectedBoard = new List<PlayerGlyph>(new[] {PlayerGlyph.Cross, PlayerGlyph.Naught});
 
             var actualBoard = game.NextBoard();
 
