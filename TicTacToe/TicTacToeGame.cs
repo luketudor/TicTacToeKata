@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace TicTacToe
 {
@@ -9,7 +10,7 @@ namespace TicTacToe
         private IReadOnlyList<PlayerGlyph> _currentBoard;
         private bool _player1Turn;
 
-        public TicTacToeGame(IPlayer player1, IPlayer player2) : this(player1, player2, new List<PlayerGlyph>(), true)
+        public TicTacToeGame(IPlayer player1, IPlayer player2) : this(player1, player2, Enumerable.Repeat(PlayerGlyph.Empty, 9).ToArray(), true)
         {
         }
 

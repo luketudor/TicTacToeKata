@@ -14,7 +14,7 @@ namespace TicTacToe.Test
 
             var actualBoard = game.NextBoard();
 
-            CollectionAssert.AreEquivalent(expectedBoard, actualBoard);
+            CollectionAssert.IsSubsetOf(expectedBoard, actualBoard);
         }
 
         [Test]
@@ -30,7 +30,7 @@ namespace TicTacToe.Test
 
             var actualBoard = game.NextBoard();
 
-            CollectionAssert.AreEquivalent(expectedBoard, actualBoard);
+            CollectionAssert.IsSubsetOf(expectedBoard, actualBoard);
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace TicTacToe.Test
             game.NextBoard();
             var actualBoard = game.NextBoard();
 
-            CollectionAssert.AreEquivalent(expectedBoard, actualBoard);
+            CollectionAssert.IsSubsetOf(expectedBoard, actualBoard);
         }
     }
 }
