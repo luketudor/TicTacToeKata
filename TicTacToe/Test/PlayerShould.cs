@@ -20,5 +20,16 @@ namespace TicTacToe.Test
             Assert.Less(actualMove, 10);
             Assert.GreaterOrEqual(actualMove, 0);
         }
+
+        [Test]
+        public void ReturnAnyPlayerMoveForSecondTurnBoard()
+        {
+            var player = new ComputerPlayer(PlayerGlyph.Naught);
+
+            var actualMove = player.TakeTurn(new List<PlayerGlyph>(new[] {PlayerGlyph.Cross}));
+
+            Assert.Less(actualMove, 10);
+            Assert.GreaterOrEqual(actualMove, 1);
+        }
     }
 }

@@ -26,7 +26,6 @@ namespace TicTacToe.Test
             CollectionAssert.AreEquivalent(expectedBoard, actualBoard);
         }
 
-        [Ignore("Not implemented yet")]
         [Test]
         public void ReturnAnySecondMove()
         {

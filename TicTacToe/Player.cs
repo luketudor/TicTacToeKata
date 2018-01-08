@@ -11,7 +11,7 @@ namespace TicTacToe
             Glyph = glyph;
         }
 
-        public int TakeTurn(IReadOnlyList<PlayerGlyph> board)
+        public virtual int TakeTurn(IReadOnlyList<PlayerGlyph> board)
         {
             return 0;
         }
