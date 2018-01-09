@@ -43,6 +43,15 @@ namespace TicTacToe
                 _currentBoard[5] == _player1.GetGlyph() ||
                 _currentBoard[6] == _player1.GetGlyph() &&
                 _currentBoard[7] == _player1.GetGlyph() &&
+                _currentBoard[8] == _player1.GetGlyph() ||
+                _currentBoard[0] == _player1.GetGlyph() &&
+                _currentBoard[3] == _player1.GetGlyph() &&
+                _currentBoard[6] == _player1.GetGlyph() ||
+                _currentBoard[1] == _player1.GetGlyph() &&
+                _currentBoard[4] == _player1.GetGlyph() &&
+                _currentBoard[7] == _player1.GetGlyph() ||
+                _currentBoard[2] == _player1.GetGlyph() &&
+                _currentBoard[5] == _player1.GetGlyph() &&
                 _currentBoard[8] == _player1.GetGlyph())
                 return _player1;
             return null;
