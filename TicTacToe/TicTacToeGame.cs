@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 
 namespace TicTacToe
 {
@@ -10,7 +9,8 @@ namespace TicTacToe
         private PlayerGlyph[] _currentBoard;
         private bool _player1Turn;
 
-        public TicTacToeGame(IPlayer player1, IPlayer player2) : this(player1, player2, Enumerable.Repeat(PlayerGlyph.Empty, 9).ToArray(), true)
+        public TicTacToeGame(IPlayer player1, IPlayer player2) : this(player1, player2,
+            Enumerable.Repeat(PlayerGlyph.Empty, 9).ToArray(), true)
         {
         }
 
@@ -24,13 +24,28 @@ namespace TicTacToe
 
         public PlayerGlyph[] NextBoard()
         {
-            var list = new PlayerGlyph[9];
-            _currentBoard.CopyTo(list, 0);
+            var newBoard = new PlayerGlyph[9];
+            _currentBoard.CopyTo(newBoard, 0);
             var currentPlayer = _player1Turn ? _player1 : _player2;
-            list[currentPlayer.TakeTurn(_currentBoard)] = currentPlayer.GetGlyph();
+            newBoard[currentPlayer.TakeTurn(_currentBoard)] = currentPlayer.GetGlyph();
             _player1Turn = !_player1Turn;
-            _currentBoard = list;
+            _currentBoard = newBoard;
             return _currentBoard;
+        }
+
+        public IPlayer Winner()
+        {
+            if (_currentBoard[0] == _player1.GetGlyph() &&
+                _currentBoard[1] == _player1.GetGlyph() &&
+                _currentBoard[2] == _player1.GetGlyph() ||
+                _currentBoard[3] == _player1.GetGlyph() &&
+                _currentBoard[4] == _player1.GetGlyph() &&
+                _currentBoard[5] == _player1.GetGlyph() ||
+                _currentBoard[6] == _player1.GetGlyph() &&
+                _currentBoard[7] == _player1.GetGlyph() &&
+                _currentBoard[8] == _player1.GetGlyph())
+                return _player1;
+            return null;
         }
     }
 }

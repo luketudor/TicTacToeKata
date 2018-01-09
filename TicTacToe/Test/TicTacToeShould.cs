@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Linq;
+using NUnit.Framework;
 
 namespace TicTacToe.Test
 {
@@ -49,6 +50,36 @@ namespace TicTacToe.Test
 
             CollectionAssert.IsSubsetOf(expectedBoard, actualBoard);
             Assert.AreEqual(9, actualBoard.Length);
+        }
+
+        [Test]
+        public void ReturnNoWinnerDeclarationOnFirstMove()
+        {
+            var game = new TicTacToeGame(
+                new ComputerPlayer(PlayerGlyph.Cross),
+                new ComputerPlayer(PlayerGlyph.Naught));
+
+            game.NextBoard();
+
+            Assert.Null(game.Winner());
+        }
+
+        [Test]
+        public void ReturnPlayerOneAsWinner()
+        {
+            var player1 = new ComputerPlayer(PlayerGlyph.Cross);
+            var board = Enumerable.Repeat(PlayerGlyph.Empty, 9).ToArray();
+            board[0] = PlayerGlyph.Cross;
+            board[1] = PlayerGlyph.Cross;
+            board[2] = PlayerGlyph.Cross;
+
+            var game = new TicTacToeGame(
+                player1,
+                new ComputerPlayer(PlayerGlyph.Naught),
+                board,
+                true);
+
+            Assert.AreEqual(player1, game.Winner());
         }
     }
 }
