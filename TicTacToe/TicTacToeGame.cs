@@ -24,12 +24,9 @@ namespace TicTacToe
 
         public PlayerGlyph[] NextBoard()
         {
-            var newBoard = new PlayerGlyph[9];
-            _currentBoard.CopyTo(newBoard, 0);
             var currentPlayer = _player1Turn ? _player1 : _player2;
-            newBoard[currentPlayer.TakeTurn(_currentBoard)] = currentPlayer.GetGlyph();
+            _currentBoard[currentPlayer.TakeTurn(_currentBoard)] = currentPlayer.GetGlyph();
             _player1Turn = !_player1Turn;
-            _currentBoard = newBoard;
             return _currentBoard;
         }
 
