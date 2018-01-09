@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using NUnit.Framework;
 
 namespace TicTacToe
 {
@@ -38,14 +40,32 @@ namespace TicTacToe
         private bool HasPlayerWon(PlayerGlyph player)
         {
             var winningRows = new int[8][];
-            winningRows[0] = new[] {0, 1, 2};
-            winningRows[1] = new[] {3, 4, 5};
-            winningRows[2] = new[] {6, 7, 8};
-            winningRows[3] = new[] {0, 3, 6};
-            winningRows[4] = new[] {1, 4, 7};
-            winningRows[5] = new[] {2, 5, 8};
-            winningRows[6] = new[] {0, 4, 8};
-            winningRows[7] = new[] {2, 4, 6};
+            for (var i = 0; i < 3; i++)
+            {
+                winningRows[i] = new int[3];
+                for (var j = 0; j < 3; j++)
+                {
+                    winningRows[i][j] = j + 3 * i;
+                }
+            }
+            for (var i = 0; i < 3; i++)
+            {
+                winningRows[i + 3] = new int[3];
+                for (var j = 0; j < 3; j++)
+                {
+                    winningRows[i + 3][j] = j * 3 + i;
+                }
+            }
+            winningRows[6] = new int[3];
+            for (var j = 0; j < 3; j++)
+            {
+                winningRows[6][j] = j * 4;
+            }
+            winningRows[7] = new int[3];
+            for (var j = 0; j < 3; j++)
+            {
+                winningRows[7][j] = j * 2 + 2;
+            }
             return winningRows.Any(winningRow => winningRow.All(index => _currentBoard[index] == player));
         }
 
