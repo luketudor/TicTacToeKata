@@ -37,30 +37,16 @@ namespace TicTacToe
 
         private bool HasPlayerWon(PlayerGlyph player)
         {
-            return _currentBoard[0] == player &&
-                   _currentBoard[1] == player &&
-                   _currentBoard[2] == player ||
-                   _currentBoard[3] == player &&
-                   _currentBoard[4] == player &&
-                   _currentBoard[5] == player ||
-                   _currentBoard[6] == player &&
-                   _currentBoard[7] == player &&
-                   _currentBoard[8] == player ||
-                   _currentBoard[0] == player &&
-                   _currentBoard[3] == player &&
-                   _currentBoard[6] == player ||
-                   _currentBoard[1] == player &&
-                   _currentBoard[4] == player &&
-                   _currentBoard[7] == player ||
-                   _currentBoard[2] == player &&
-                   _currentBoard[5] == player &&
-                   _currentBoard[8] == player ||
-                   _currentBoard[0] == player &&
-                   _currentBoard[4] == player &&
-                   _currentBoard[8] == player ||
-                   _currentBoard[2] == player &&
-                   _currentBoard[4] == player &&
-                   _currentBoard[6] == player;
+            var winningRows = new int[8][];
+            winningRows[0] = new[] {0, 1, 2};
+            winningRows[1] = new[] {3, 4, 5};
+            winningRows[2] = new[] {6, 7, 8};
+            winningRows[3] = new[] {0, 3, 6};
+            winningRows[4] = new[] {1, 4, 7};
+            winningRows[5] = new[] {2, 5, 8};
+            winningRows[6] = new[] {0, 4, 8};
+            winningRows[7] = new[] {2, 4, 6};
+            return winningRows.Any(winningRow => winningRow.All(index => _currentBoard[index] == player));
         }
 
         public bool IsDraw()
