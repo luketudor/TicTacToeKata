@@ -15,8 +15,10 @@ namespace TicTacToe.Test
             var actualBoard = game.NextBoard();
 
             CollectionAssert.IsSubsetOf(expectedBoard, actualBoard);
+            Assert.AreEqual(9, actualBoard.Length);
         }
 
+        [Ignore("Constructor may be removed in the future")]
         [Test]
         public void ReturnAnySecondMove()
         {
@@ -46,6 +48,7 @@ namespace TicTacToe.Test
             var actualBoard = game.NextBoard();
 
             CollectionAssert.IsSubsetOf(expectedBoard, actualBoard);
+            Assert.AreEqual(9, actualBoard.Length);
         }
     }
 }

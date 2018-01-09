@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Linq;
+using NUnit.Framework;
 
 namespace TicTacToe.Test
 {
@@ -9,8 +10,9 @@ namespace TicTacToe.Test
         public void ReturnAnyPlayerMoveForEmptyBoard()
         {
             var player = new ComputerPlayer(PlayerGlyph.Cross);
+            var board = Enumerable.Repeat(PlayerGlyph.Empty, 9).ToArray();
 
-            var actualMove = player.TakeTurn(new PlayerGlyph[0]);
+            var actualMove = player.TakeTurn(board);
 
             Assert.Less(actualMove, 10);
             Assert.GreaterOrEqual(actualMove, 0);
@@ -20,8 +22,10 @@ namespace TicTacToe.Test
         public void ReturnAnyPlayerMoveForSecondTurnBoard()
         {
             var player = new ComputerPlayer(PlayerGlyph.Naught);
+            var board = Enumerable.Repeat(PlayerGlyph.Empty, 9).ToArray();
+            board[0] = PlayerGlyph.Cross;
 
-            var actualMove = player.TakeTurn(new[] {PlayerGlyph.Cross});
+            var actualMove = player.TakeTurn(board);
 
             Assert.Less(actualMove, 10);
             Assert.GreaterOrEqual(actualMove, 1);

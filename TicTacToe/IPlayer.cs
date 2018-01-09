@@ -5,6 +5,6 @@ namespace TicTacToe
     public interface IPlayer
     {
         PlayerGlyph GetGlyph();
-        int TakeTurn(IReadOnlyList<PlayerGlyph> board);
+        int TakeTurn(PlayerGlyph[] board);
     }
 }

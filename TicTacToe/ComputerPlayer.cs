@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TicTacToe
 {
@@ -15,9 +17,16 @@ namespace TicTacToe
             return _glyph;
         }
 
-        public int TakeTurn(IReadOnlyList<PlayerGlyph> board)
+        public int TakeTurn(PlayerGlyph[] board)
         {
-            return board.Count;
+            for (var i = 0; i < board.Length; i++)
+            {
+                if (board[i] == PlayerGlyph.Empty)
+                {
+                    return i;
+                }
+            }
+            throw new ArgumentException();
         }
     }
 }
