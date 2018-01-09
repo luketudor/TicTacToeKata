@@ -117,5 +117,23 @@ namespace TicTacToe.Test
 
             Assert.AreEqual(player1, game.Winner());
         }
+
+        [Test]
+        public void ReturnPlayerTwoAsWinnerWithDiagonal()
+        {
+            var player1 = new ComputerPlayer(PlayerGlyph.Cross);
+            var board = Enumerable.Repeat(PlayerGlyph.Empty, 9).ToArray();
+            board[2] = PlayerGlyph.Cross;
+            board[4] = PlayerGlyph.Cross;
+            board[6] = PlayerGlyph.Cross;
+
+            var game = new TicTacToeGame(
+                player1,
+                new ComputerPlayer(PlayerGlyph.Naught),
+                board,
+                true);
+
+            Assert.AreEqual(player1, game.Winner());
+        }
     }
 }

@@ -6,7 +6,7 @@ namespace TicTacToe
     {
         private readonly IPlayer _player1;
         private readonly IPlayer _player2;
-        private PlayerGlyph[] _currentBoard;
+        private readonly PlayerGlyph[] _currentBoard;
         private bool _player1Turn;
 
         public TicTacToeGame(IPlayer player1, IPlayer player2) : this(player1, player2,
@@ -32,32 +32,35 @@ namespace TicTacToe
 
         public IPlayer Winner()
         {
-            if (_currentBoard[0] == _player1.GetGlyph() &&
-                _currentBoard[1] == _player1.GetGlyph() &&
-                _currentBoard[2] == _player1.GetGlyph() ||
-                _currentBoard[3] == _player1.GetGlyph() &&
-                _currentBoard[4] == _player1.GetGlyph() &&
-                _currentBoard[5] == _player1.GetGlyph() ||
-                _currentBoard[6] == _player1.GetGlyph() &&
-                _currentBoard[7] == _player1.GetGlyph() &&
-                _currentBoard[8] == _player1.GetGlyph() ||
-                _currentBoard[0] == _player1.GetGlyph() &&
-                _currentBoard[3] == _player1.GetGlyph() &&
-                _currentBoard[6] == _player1.GetGlyph() ||
-                _currentBoard[1] == _player1.GetGlyph() &&
-                _currentBoard[4] == _player1.GetGlyph() &&
-                _currentBoard[7] == _player1.GetGlyph() ||
-                _currentBoard[2] == _player1.GetGlyph() &&
-                _currentBoard[5] == _player1.GetGlyph() &&
-                _currentBoard[8] == _player1.GetGlyph() ||
-                _currentBoard[0] == _player1.GetGlyph() &&
-                _currentBoard[4] == _player1.GetGlyph() &&
-                _currentBoard[8] == _player1.GetGlyph() ||
-                _currentBoard[2] == _player1.GetGlyph() &&
-                _currentBoard[4] == _player1.GetGlyph() &&
-                _currentBoard[6] == _player1.GetGlyph())
-                return _player1;
-            return null;
+            return HasPlayerWon(_player1) ? _player1 : (HasPlayerWon(_player2) ? _player2 : null);
+        }
+
+        private bool HasPlayerWon(IPlayer player)
+        {
+            return _currentBoard[0] == player.GetGlyph() &&
+                   _currentBoard[1] == player.GetGlyph() &&
+                   _currentBoard[2] == player.GetGlyph() ||
+                   _currentBoard[3] == player.GetGlyph() &&
+                   _currentBoard[4] == player.GetGlyph() &&
+                   _currentBoard[5] == player.GetGlyph() ||
+                   _currentBoard[6] == player.GetGlyph() &&
+                   _currentBoard[7] == player.GetGlyph() &&
+                   _currentBoard[8] == player.GetGlyph() ||
+                   _currentBoard[0] == player.GetGlyph() &&
+                   _currentBoard[3] == player.GetGlyph() &&
+                   _currentBoard[6] == player.GetGlyph() ||
+                   _currentBoard[1] == player.GetGlyph() &&
+                   _currentBoard[4] == player.GetGlyph() &&
+                   _currentBoard[7] == player.GetGlyph() ||
+                   _currentBoard[2] == player.GetGlyph() &&
+                   _currentBoard[5] == player.GetGlyph() &&
+                   _currentBoard[8] == player.GetGlyph() ||
+                   _currentBoard[0] == player.GetGlyph() &&
+                   _currentBoard[4] == player.GetGlyph() &&
+                   _currentBoard[8] == player.GetGlyph() ||
+                   _currentBoard[2] == player.GetGlyph() &&
+                   _currentBoard[4] == player.GetGlyph() &&
+                   _currentBoard[6] == player.GetGlyph();
         }
     }
 }
