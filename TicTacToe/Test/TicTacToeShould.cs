@@ -135,5 +135,35 @@ namespace TicTacToe.Test
 
             Assert.AreEqual(player1, game.Winner());
         }
+
+        [Test]
+        public void ReturnNoDrawDeclarationOnFirstMove()
+        {
+            var game = new TicTacToeGame(
+                new ComputerPlayer(PlayerGlyph.Cross),
+                new ComputerPlayer(PlayerGlyph.Naught));
+
+            Assert.AreEqual(false, game.IsDraw());
+        }
+
+        [Test]
+        public void ReturnDrawDeclarationOnFullBoard()
+        {
+            var x = PlayerGlyph.Cross;
+            var o = PlayerGlyph.Naught;
+
+            var game = new TicTacToeGame(
+                new ComputerPlayer(PlayerGlyph.Cross),
+                new ComputerPlayer(PlayerGlyph.Naught),
+                new[]
+                {
+                    x, o, o,
+                    o, x, x,
+                    x, o, o
+                },
+                true);
+
+            Assert.AreEqual(true, game.IsDraw());
+        }
     }
 }

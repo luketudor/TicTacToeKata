@@ -62,5 +62,10 @@ namespace TicTacToe
                    _currentBoard[4] == player &&
                    _currentBoard[6] == player;
         }
+
+        public bool IsDraw()
+        {
+            return _currentBoard.All(cell => cell != PlayerGlyph.Empty);
+        }
     }
 }
