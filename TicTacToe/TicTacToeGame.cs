@@ -32,35 +32,35 @@ namespace TicTacToe
 
         public IPlayer Winner()
         {
-            return HasPlayerWon(_player1) ? _player1 : (HasPlayerWon(_player2) ? _player2 : null);
+            return HasPlayerWon(_player1.GetGlyph()) ? _player1 : (HasPlayerWon(_player2.GetGlyph()) ? _player2 : null);
         }
 
-        private bool HasPlayerWon(IPlayer player)
+        private bool HasPlayerWon(PlayerGlyph player)
         {
-            return _currentBoard[0] == player.GetGlyph() &&
-                   _currentBoard[1] == player.GetGlyph() &&
-                   _currentBoard[2] == player.GetGlyph() ||
-                   _currentBoard[3] == player.GetGlyph() &&
-                   _currentBoard[4] == player.GetGlyph() &&
-                   _currentBoard[5] == player.GetGlyph() ||
-                   _currentBoard[6] == player.GetGlyph() &&
-                   _currentBoard[7] == player.GetGlyph() &&
-                   _currentBoard[8] == player.GetGlyph() ||
-                   _currentBoard[0] == player.GetGlyph() &&
-                   _currentBoard[3] == player.GetGlyph() &&
-                   _currentBoard[6] == player.GetGlyph() ||
-                   _currentBoard[1] == player.GetGlyph() &&
-                   _currentBoard[4] == player.GetGlyph() &&
-                   _currentBoard[7] == player.GetGlyph() ||
-                   _currentBoard[2] == player.GetGlyph() &&
-                   _currentBoard[5] == player.GetGlyph() &&
-                   _currentBoard[8] == player.GetGlyph() ||
-                   _currentBoard[0] == player.GetGlyph() &&
-                   _currentBoard[4] == player.GetGlyph() &&
-                   _currentBoard[8] == player.GetGlyph() ||
-                   _currentBoard[2] == player.GetGlyph() &&
-                   _currentBoard[4] == player.GetGlyph() &&
-                   _currentBoard[6] == player.GetGlyph();
+            return _currentBoard[0] == player &&
+                   _currentBoard[1] == player &&
+                   _currentBoard[2] == player ||
+                   _currentBoard[3] == player &&
+                   _currentBoard[4] == player &&
+                   _currentBoard[5] == player ||
+                   _currentBoard[6] == player &&
+                   _currentBoard[7] == player &&
+                   _currentBoard[8] == player ||
+                   _currentBoard[0] == player &&
+                   _currentBoard[3] == player &&
+                   _currentBoard[6] == player ||
+                   _currentBoard[1] == player &&
+                   _currentBoard[4] == player &&
+                   _currentBoard[7] == player ||
+                   _currentBoard[2] == player &&
+                   _currentBoard[5] == player &&
+                   _currentBoard[8] == player ||
+                   _currentBoard[0] == player &&
+                   _currentBoard[4] == player &&
+                   _currentBoard[8] == player ||
+                   _currentBoard[2] == player &&
+                   _currentBoard[4] == player &&
+                   _currentBoard[6] == player;
         }
     }
 }
