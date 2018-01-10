@@ -19,14 +19,7 @@ namespace TicTacToe.Players
 
         public int TakeTurn(PlayerGlyph[] board)
         {
-            for (var i = 0; i < board.Length; i++)
-            {
-                if (board[i] == PlayerGlyph.Empty)
-                {
-                    return i;
-                }
-            }
-            throw new ArgumentException();
+            return Array.IndexOf(board, PlayerGlyph.Empty);
         }
     }
 }
