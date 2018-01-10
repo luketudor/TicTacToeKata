@@ -50,7 +50,9 @@
   <ItemGroup>
     <Compile Include="ComputerPlayer.cs" />
     <Compile Include="IPlayer.cs" />
+    <Compile Include="StubPlayer.cs" />
     <Compile Include="PlayerGlyph.cs" />
+    <Compile Include="DummyPlayer.cs" />
     <Compile Include="Test\PlayerShould.cs" />
     <Compile Include="TicTacToeGame.cs" />
     <Compile Include="Test\TicTacToeShould.cs" />
