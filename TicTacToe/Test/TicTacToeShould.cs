@@ -106,63 +106,6 @@ namespace TicTacToe.Test
         }
 
         [Test]
-        public void ReturnPlayerOneAsWinnerWithColumns()
-        {
-            var player1 = new StubPlayer(PlayerGlyph.Cross);
-
-            var game = new TicTacToeGame(
-                player1,
-                new StubPlayer(PlayerGlyph.Naught),
-                new[]
-                {
-                    X, _, _,
-                    X, _, _,
-                    X, _, _
-                },
-                true);
-
-            Assert.AreEqual(player1, game.Winner());
-        }
-
-        [Test]
-        public void ReturnPlayerOneAsWinnerWithDiagonal()
-        {
-            var player1 = new StubPlayer(PlayerGlyph.Cross);
-
-            var game = new TicTacToeGame(
-                player1,
-                new StubPlayer(PlayerGlyph.Naught),
-                new[]
-                {
-                    X, _, _,
-                    _, X, _,
-                    _, _, X
-                },
-                true);
-
-            Assert.AreEqual(player1, game.Winner());
-        }
-
-        [Test]
-        public void ReturnPlayerTwoAsWinnerWithDiagonal()
-        {
-            var player1 = new StubPlayer(PlayerGlyph.Cross);
-
-            var game = new TicTacToeGame(
-                player1,
-                new StubPlayer(PlayerGlyph.Naught),
-                new[]
-                {
-                    _, _, X,
-                    _, X, _,
-                    X, _, _
-                },
-                true);
-
-            Assert.AreEqual(player1, game.Winner());
-        }
-
-        [Test]
         public void ReturnNoDrawDeclarationOnFirstMove()
         {
             var game = new TicTacToeGame(

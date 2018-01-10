@@ -54,6 +54,7 @@
     <Compile Include="Players\IPlayer.cs" />
     <Compile Include="Players\StubPlayer.cs" />
     <Compile Include="Test\PlayerShould.cs" />
+    <Compile Include="Test\WinCheckerShould.cs" />
     <Compile Include="TicTacToeGame.cs" />
     <Compile Include="Test\TicTacToeShould.cs" />
     <Compile Include="Program.cs" />
