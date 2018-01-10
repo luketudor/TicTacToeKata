@@ -5,6 +5,6 @@ namespace TicTacToe.Players
     public interface IPlayer
     {
         PlayerGlyph GetGlyph();
-        int TakeTurn(PlayerGlyph[] board);
+        int MakeMove(PlayerGlyph[] board);
     }
 }

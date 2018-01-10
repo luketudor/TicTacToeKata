@@ -14,7 +14,7 @@ namespace TicTacToe.Test
             var player = new ComputerPlayer(PlayerGlyph.Cross);
             var board = Enumerable.Repeat(PlayerGlyph.Empty, 9).ToArray();
 
-            var actualMove = player.TakeTurn(board);
+            var actualMove = player.MakeMove(board);
 
             Assert.Less(actualMove, 10);
             Assert.GreaterOrEqual(actualMove, 0);
@@ -27,7 +27,7 @@ namespace TicTacToe.Test
             var board = Enumerable.Repeat(PlayerGlyph.Empty, 9).ToArray();
             board[0] = PlayerGlyph.Cross;
 
-            var actualMove = player.TakeTurn(board);
+            var actualMove = player.MakeMove(board);
 
             Assert.Less(actualMove, 10);
             Assert.GreaterOrEqual(actualMove, 1);

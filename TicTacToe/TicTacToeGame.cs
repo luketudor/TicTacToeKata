@@ -26,11 +26,15 @@ namespace TicTacToe
             _winChecker = new WinChecker();
         }
 
-        public PlayerGlyph[] NextBoard()
+        public void NextTurn()
         {
             var currentPlayer = _player1Turn ? _player1 : _player2;
-            _currentBoard[currentPlayer.TakeTurn(_currentBoard)] = currentPlayer.GetGlyph();
+            _currentBoard[currentPlayer.MakeMove(_currentBoard)] = currentPlayer.GetGlyph();
             _player1Turn = !_player1Turn;
+        }
+
+        internal PlayerGlyph[] GetBoard()
+        {
             return _currentBoard;
         }
 

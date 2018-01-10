@@ -22,7 +22,7 @@ namespace TicTacToe.Players
             return _glyph;
         }
 
-        public int TakeTurn(PlayerGlyph[] board)
+        public int MakeMove(PlayerGlyph[] board)
         {
             return _whereToMove;
         }

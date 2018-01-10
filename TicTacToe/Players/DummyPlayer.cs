@@ -10,7 +10,7 @@ namespace TicTacToe.Players
             throw new NotSupportedException();
         }
 
-        public int TakeTurn(PlayerGlyph[] board)
+        public int MakeMove(PlayerGlyph[] board)
         {
             throw new NotSupportedException();
         }

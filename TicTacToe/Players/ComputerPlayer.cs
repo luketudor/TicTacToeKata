@@ -17,7 +17,7 @@ namespace TicTacToe.Players
             return _glyph;
         }
 
-        public int TakeTurn(PlayerGlyph[] board)
+        public int MakeMove(PlayerGlyph[] board)
         {
             return Array.IndexOf(board, PlayerGlyph.Empty);
         }

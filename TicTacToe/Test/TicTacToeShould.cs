@@ -25,7 +25,8 @@ namespace TicTacToe.Test
                 _, _, _
             };
 
-            var actualBoard = game.NextBoard();
+            game.NextTurn();
+            var actualBoard = game.GetBoard();
 
             CollectionAssert.AreEqual(expectedBoard, actualBoard);
         }
@@ -51,7 +52,8 @@ namespace TicTacToe.Test
                 _, _, _
             };
 
-            var actualBoard = game.NextBoard();
+            game.NextTurn();
+            var actualBoard = game.GetBoard();
 
             CollectionAssert.AreEqual(expectedBoard, actualBoard);
         }
@@ -70,8 +72,9 @@ namespace TicTacToe.Test
                 _, _, _
             };
 
-            game.NextBoard();
-            var actualBoard = game.NextBoard();
+            game.NextTurn();
+            game.NextTurn();
+            var actualBoard = game.GetBoard();
 
             CollectionAssert.AreEqual(expectedBoard, actualBoard);
         }
