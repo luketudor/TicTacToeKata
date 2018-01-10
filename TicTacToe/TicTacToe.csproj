@@ -48,11 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ComputerPlayer.cs" />
-    <Compile Include="IPlayer.cs" />
-    <Compile Include="StubPlayer.cs" />
-    <Compile Include="PlayerGlyph.cs" />
-    <Compile Include="DummyPlayer.cs" />
+    <Compile Include="Enums\PlayerGlyph.cs" />
+    <Compile Include="Players\ComputerPlayer.cs" />
+    <Compile Include="Players\DummyPlayer.cs" />
+    <Compile Include="Players\IPlayer.cs" />
+    <Compile Include="Players\StubPlayer.cs" />
     <Compile Include="Test\PlayerShould.cs" />
     <Compile Include="TicTacToeGame.cs" />
     <Compile Include="Test\TicTacToeShould.cs" />

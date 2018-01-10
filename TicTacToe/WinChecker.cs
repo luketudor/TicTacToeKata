@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TicTacToe.Enums;
 
 namespace TicTacToe
 {
@@ -21,6 +19,7 @@ namespace TicTacToe
                         yield return j * 2 + 2;
                     }
                 }
+
                 IEnumerable<int> BackDiagonalRowIndices()
                 {
                     for (var j = 0; j < 3; j++)
@@ -28,6 +27,7 @@ namespace TicTacToe
                         yield return j * 4;
                     }
                 }
+
                 IEnumerable<int> VerticalRowIndices(int rowNumber)
                 {
                     for (var j = 0; j < 3; j++)
@@ -35,6 +35,7 @@ namespace TicTacToe
                         yield return j * 3 + rowNumber;
                     }
                 }
+
                 IEnumerable<int> HorizontalRowIndices(int rowNumber)
                 {
                     for (var j = 0; j < 3; j++)
@@ -42,6 +43,7 @@ namespace TicTacToe
                         yield return j + 3 * rowNumber;
                     }
                 }
+
                 for (var i = 0; i < 3; i++)
                 {
                     yield return HorizontalRowIndices(i);
@@ -58,6 +60,5 @@ namespace TicTacToe
         {
             return _winningRows.Any(winningRow => winningRow.All(index => currentBoard[index] == player));
         }
-
     }
 }

@@ -1,6 +1,6 @@
-using System.Collections.Generic;
+using TicTacToe.Enums;
 
-namespace TicTacToe
+namespace TicTacToe.Players
 {
     public interface IPlayer
     {

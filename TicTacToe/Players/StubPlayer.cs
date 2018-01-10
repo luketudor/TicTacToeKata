@@ -1,4 +1,6 @@
-﻿namespace TicTacToe
+﻿using TicTacToe.Enums;
+
+namespace TicTacToe.Players
 {
     public class StubPlayer : IPlayer
     {

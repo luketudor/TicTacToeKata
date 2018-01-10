@@ -1,13 +1,15 @@
 ﻿using System;
+using TicTacToe.Enums;
 
-namespace TicTacToe
+namespace TicTacToe.Players
 {
     public class ComputerPlayer : IPlayer
     {
         private readonly PlayerGlyph _glyph;
+
         public ComputerPlayer(PlayerGlyph glyph)
         {
-           _glyph = glyph;
+            _glyph = glyph;
         }
 
         public PlayerGlyph GetGlyph()

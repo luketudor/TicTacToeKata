@@ -1,6 +1,6 @@
-﻿using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using TicTacToe.Enums;
+using TicTacToe.Players;
 
 namespace TicTacToe.Test
 {
@@ -166,7 +166,7 @@ namespace TicTacToe.Test
         public void ReturnNoDrawDeclarationOnFirstMove()
         {
             var game = new TicTacToeGame(
-                new DummyPlayer(), 
+                new DummyPlayer(),
                 new DummyPlayer());
 
             Assert.AreEqual(false, game.IsDraw());

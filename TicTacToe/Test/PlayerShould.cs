@@ -1,5 +1,7 @@
 ﻿using System.Linq;
 using NUnit.Framework;
+using TicTacToe.Enums;
+using TicTacToe.Players;
 
 namespace TicTacToe.Test
 {

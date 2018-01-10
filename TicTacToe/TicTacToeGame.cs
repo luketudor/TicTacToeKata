@@ -1,15 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using TicTacToe.Enums;
+using TicTacToe.Players;
 
 namespace TicTacToe
 {
     public class TicTacToeGame
     {
+        private readonly PlayerGlyph[] _currentBoard;
         private readonly IPlayer _player1;
         private readonly IPlayer _player2;
-        private readonly PlayerGlyph[] _currentBoard;
-        private bool _player1Turn;
         private readonly WinChecker _winChecker;
+        private bool _player1Turn;
 
         public TicTacToeGame(IPlayer player1, IPlayer player2) : this(player1, player2,
             Enumerable.Repeat(PlayerGlyph.Empty, 9).ToArray(), true)
@@ -35,7 +36,9 @@ namespace TicTacToe
 
         public IPlayer Winner()
         {
-            return _winChecker.HasPlayerWon(_currentBoard, _player1.GetGlyph()) ? _player1 : (_winChecker.HasPlayerWon(_currentBoard, _player2.GetGlyph()) ? _player2 : null);
+            return _winChecker.HasPlayerWon(_currentBoard, _player1.GetGlyph())
+                ? _player1
+                : (_winChecker.HasPlayerWon(_currentBoard, _player2.GetGlyph()) ? _player2 : null);
         }
 
         public bool IsDraw()
