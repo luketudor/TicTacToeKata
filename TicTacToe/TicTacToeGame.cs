@@ -43,18 +43,21 @@ namespace TicTacToe
 
         private bool HasPlayerWon(PlayerGlyph player)
         {
-            var winningRows = new List<IEnumerable<int>>();
+            return WinningRows().Any(winningRow => winningRow.All(index => _currentBoard[index] == player));
+        }
+
+        private IEnumerable<IEnumerable<int>> WinningRows()
+        {
             for (var i = 0; i < 3; i++)
             {
-                winningRows.Add(HorizontalRowIndices(i));
+                yield return HorizontalRowIndices(i);
             }
             for (var i = 0; i < 3; i++)
             {
-                winningRows.Add(VerticalRowIndices(i));
+                yield return VerticalRowIndices(i);
             }
-            winningRows.Add(BackDiagonalRowIndices());
-            winningRows.Add(ForwardDiagonalRowIndices());
-            return winningRows.Any(winningRow => winningRow.All(index => _currentBoard[index] == player));
+            yield return BackDiagonalRowIndices();
+            yield return ForwardDiagonalRowIndices();
         }
 
         private IEnumerable<int> HorizontalRowIndices(int rowNumber)
