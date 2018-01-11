@@ -68,7 +68,7 @@ namespace TicTacToe.Test
 
             var board = new[]
             {
-                O, _, _,
+                _, _, _,
                 _, _, _,
                 _, _, _
             };
@@ -86,7 +86,7 @@ namespace TicTacToe.Test
 
             var board = new[]
             {
-                O, _, _,
+                _, _, _,
                 _, _, _,
                 _, _, _
             };
@@ -95,6 +95,24 @@ namespace TicTacToe.Test
             player.MakeMove(board);
 
             Assert.AreEqual($"Negative indices are not allowed, please try again{stringWriter.NewLine}", stringWriter.ToString());
+        }
+
+        [Test]
+        public void WriteErrorMessageForInvalidFormat()
+        {
+            var stringWriter = new StringWriter();
+
+            var board = new[]
+            {
+                _, _, _,
+                _, _, _,
+                _, _, _
+            };
+
+            var player = new TextStreamPlayer(PlayerGlyph.Cross, new StringReader("2.0\n1"), stringWriter);
+            player.MakeMove(board);
+
+            Assert.AreEqual($"Invalid format: Positive integers only, please try again{stringWriter.NewLine}", stringWriter.ToString());
         }
     }
 }
