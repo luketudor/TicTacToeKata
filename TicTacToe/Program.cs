@@ -11,7 +11,7 @@ namespace TicTacToe
         {
             var game = new TicTacToeGame(
                 new ComputerPlayer(PlayerGlyph.Cross),
-                new TextStreamPlayer(PlayerGlyph.Naught, Console.In)
+                new TextStreamPlayer(PlayerGlyph.Naught, Console.In, Console.Out)
                 );
             while (!game.IsDraw())
             {

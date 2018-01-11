@@ -32,13 +32,7 @@ namespace TicTacToe
         public void NextTurn()
         {
             var currentPlayer = _player1Turn ? _player1 : _player2;
-            var playerMove = currentPlayer.MakeMove(_currentBoard);
-            // TODO should replace with validation
-            if (_currentBoard[playerMove] != PlayerGlyph.Empty)
-            {
-                throw new ArgumentException("Position is not empty");
-            }
-            _currentBoard[playerMove] = currentPlayer.GetGlyph();
+            _currentBoard[currentPlayer.MakeMove(_currentBoard)] = currentPlayer.GetGlyph();
             _player1Turn = !_player1Turn;
         }
 

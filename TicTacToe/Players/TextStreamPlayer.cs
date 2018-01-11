@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.Design;
 using System.IO;
 using TicTacToe.Enums;
 
@@ -8,11 +9,13 @@ namespace TicTacToe.Players
     {
         private readonly PlayerGlyph _glyph;
         private readonly TextReader _input;
+        private readonly TextWriter _output;
 
-        public TextStreamPlayer(PlayerGlyph glyph, TextReader input)
+        public TextStreamPlayer(PlayerGlyph glyph, TextReader input, TextWriter output)
         {
             _glyph = glyph;
             _input = input;
+            _output = output;
         }
 
         public PlayerGlyph GetGlyph()
@@ -22,7 +25,13 @@ namespace TicTacToe.Players
 
         public int MakeMove(PlayerGlyph[] board)
         {
-            return Convert.ToInt32(_input.ReadLine());
+            var position = Convert.ToInt32(_input.ReadLine());
+            while (board[position] != PlayerGlyph.Empty)
+            {
+                _output.WriteLine("That position is occupied, please try again");
+                position = Convert.ToInt32(_input.ReadLine());
+            }
+            return position;
         }
     }
 }

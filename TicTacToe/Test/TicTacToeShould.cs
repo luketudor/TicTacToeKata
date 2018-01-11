@@ -137,6 +137,7 @@ namespace TicTacToe.Test
             Assert.AreEqual(true, game.IsDraw());
         }
 
+        [Ignore("Exception removed")]
         [Test]
         public void ThrowArgumentExeceptionOnAttemptedOverwrite()
         {
