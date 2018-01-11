@@ -58,7 +58,43 @@ namespace TicTacToe.Test
             var player = new TextStreamPlayer(PlayerGlyph.Cross, new StringReader("0\n1"), stringWriter);
             player.MakeMove(board);
 
-            Assert.AreEqual("That position is occupied, please try again\r\n", stringWriter.ToString());
+            Assert.AreEqual($"That position is occupied, please try again{stringWriter.NewLine}", stringWriter.ToString());
+        }
+
+        [Test]
+        public void WriteErrorMessageForAttempedOutOfBounds()
+        {
+            var stringWriter = new StringWriter();
+
+            var board = new[]
+            {
+                O, _, _,
+                _, _, _,
+                _, _, _
+            };
+
+            var player = new TextStreamPlayer(PlayerGlyph.Cross, new StringReader("9\n1"), stringWriter);
+            player.MakeMove(board);
+
+            Assert.AreEqual($"That index is out of bounds, please try again{stringWriter.NewLine}", stringWriter.ToString());
+        }
+
+        [Test]
+        public void WriteErrorMessageForAttempedNegativePosition()
+        {
+            var stringWriter = new StringWriter();
+
+            var board = new[]
+            {
+                O, _, _,
+                _, _, _,
+                _, _, _
+            };
+
+            var player = new TextStreamPlayer(PlayerGlyph.Cross, new StringReader("-1\n1"), stringWriter);
+            player.MakeMove(board);
+
+            Assert.AreEqual($"Negative indices are not allowed, please try again{stringWriter.NewLine}", stringWriter.ToString());
         }
     }
 }

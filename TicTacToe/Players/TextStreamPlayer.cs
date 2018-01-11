@@ -26,10 +26,27 @@ namespace TicTacToe.Players
         public int MakeMove(PlayerGlyph[] board)
         {
             var position = Convert.ToInt32(_input.ReadLine());
-            while (board[position] != PlayerGlyph.Empty)
+            while(true)
             {
-                _output.WriteLine("That position is occupied, please try again");
-                position = Convert.ToInt32(_input.ReadLine());
+                if (position < 0)
+                {
+                    _output.WriteLine("Negative indices are not allowed, please try again");
+                    position = Convert.ToInt32(_input.ReadLine());
+                }
+                else if (position >= board.Length)
+                {
+                    _output.WriteLine("That index is out of bounds, please try again");
+                    position = Convert.ToInt32(_input.ReadLine());
+                }
+                else if (board[position] != PlayerGlyph.Empty)
+                {
+                    _output.WriteLine("That position is occupied, please try again");
+                    position = Convert.ToInt32(_input.ReadLine());
+                }
+                else
+                {
+                    break;
+                }
             }
             return position;
         }
