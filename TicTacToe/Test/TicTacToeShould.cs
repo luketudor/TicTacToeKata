@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using TicTacToe.Enums;
 using TicTacToe.Players;
 
@@ -133,6 +134,23 @@ namespace TicTacToe.Test
                 true);
 
             Assert.AreEqual(true, game.IsDraw());
+        }
+
+        [Test]
+        public void ThrowArgumentExeceptionOnAttemptedOverwrite()
+        {
+            var game = new TicTacToeGame(
+                new StubPlayer(PlayerGlyph.Cross, 0),
+                new DummyPlayer(),
+                new[]
+                {
+                    O, _, _,
+                    _, _, _,
+                    _, _, _
+                },
+                true);
+
+            Assert.Catch<ArgumentException>(game.NextTurn, "Position is not empty");
         }
     }
 }

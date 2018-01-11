@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using TicTacToe.Enums;
 using TicTacToe.Players;
 
@@ -29,6 +30,11 @@ namespace TicTacToe
         public void NextTurn()
         {
             var currentPlayer = _player1Turn ? _player1 : _player2;
+            var playerMove = currentPlayer.MakeMove(_currentBoard);
+            if (_currentBoard[playerMove] != PlayerGlyph.Empty)
+            {
+                throw new ArgumentException("Position is not empty");
+            }
             _currentBoard[currentPlayer.MakeMove(_currentBoard)] = currentPlayer.GetGlyph();
             _player1Turn = !_player1Turn;
         }
