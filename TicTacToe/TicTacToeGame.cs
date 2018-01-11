@@ -37,7 +37,7 @@ namespace TicTacToe
             {
                 throw new ArgumentException("Position is not empty");
             }
-            _currentBoard[currentPlayer.MakeMove(_currentBoard)] = currentPlayer.GetGlyph();
+            _currentBoard[playerMove] = currentPlayer.GetGlyph();
             _player1Turn = !_player1Turn;
         }
 

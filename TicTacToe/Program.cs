@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using TicTacToe.Enums;
 using TicTacToe.Players;
 
@@ -10,7 +11,8 @@ namespace TicTacToe
         {
             var game = new TicTacToeGame(
                 new ComputerPlayer(PlayerGlyph.Cross),
-                new ComputerPlayer(PlayerGlyph.Naught));
+                new TextStreamPlayer(PlayerGlyph.Naught, Console.In)
+                );
             while (!game.IsDraw())
             {
                 game.NextTurn();
