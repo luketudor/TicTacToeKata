@@ -4,13 +4,13 @@ using TicTacToe.Enums;
 
 namespace TicTacToe.Players
 {
-    public class TextStreamPlayer : IPlayer
+    public class TextPlayer : IPlayer
     {
         private readonly PlayerGlyph _glyph;
         private readonly TextReader _input;
         private readonly TextWriter _output;
 
-        public TextStreamPlayer(PlayerGlyph glyph, TextReader input, TextWriter output)
+        public TextPlayer(PlayerGlyph glyph, TextReader input, TextWriter output)
         {
             _glyph = glyph;
             _input = input;

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using TicTacToe.Enums;
 using TicTacToe.Players;
 
@@ -10,12 +9,16 @@ namespace TicTacToe
         private readonly PlayerGlyph[] _currentBoard;
         private readonly IPlayer _player1;
         private readonly IPlayer _player2;
-        private readonly IBoardRenderer _renderer;
         private readonly WinChecker _winChecker;
         private bool _player1Turn;
 
-        public TicTacToeGame(IPlayer player1, IPlayer player2) : this(player1, player2,
-            Enumerable.Repeat(PlayerGlyph.Empty, 9).ToArray(), true)
+        public TicTacToeGame(IPlayer player1, IPlayer player2) 
+            : this(
+                  player1,
+                  player2,
+                  Enumerable.Repeat(PlayerGlyph.Empty, 9).ToArray(),
+                  true
+                  )
         {
         }
 
@@ -25,7 +28,6 @@ namespace TicTacToe
             _player2 = player2;
             _currentBoard = currentBoard;
             _player1Turn = player1Turn;
-            _renderer = new TextStreamBoardRenderer(Console.Out);
             _winChecker = new WinChecker();
         }
 
@@ -36,26 +38,15 @@ namespace TicTacToe
             _player1Turn = !_player1Turn;
         }
 
-        internal PlayerGlyph[] GetBoard()
-        {
-            return _currentBoard;
-        }
+        internal PlayerGlyph[] GetBoard() => _currentBoard;
 
-        public IPlayer Winner()
-        {
-            return _winChecker.HasPlayerWon(_currentBoard, _player1.GetGlyph())
-                ? _player1
-                : (_winChecker.HasPlayerWon(_currentBoard, _player2.GetGlyph()) ? _player2 : null);
-        }
+        public IPlayer Winner() =>
+            _winChecker.HasPlayerWon(_currentBoard, _player1.GetGlyph())
+            ? _player1
+            : (_winChecker.HasPlayerWon(_currentBoard, _player2.GetGlyph()) ? _player2 : null);
 
-        public bool IsDraw()
-        {
-            return _currentBoard.All(cell => cell != PlayerGlyph.Empty);
-        }
+        public bool IsDraw() => _currentBoard.All(cell => cell != PlayerGlyph.Empty);
 
-        public void Render()
-        {
-            _renderer.Render(_currentBoard);
-        }
+        public void Render(IBoardRenderer renderer) => renderer.Render(_currentBoard);
     }
 }

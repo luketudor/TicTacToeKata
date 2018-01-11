@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using TicTacToe.Enums;
 using TicTacToe.Players;
 
@@ -11,12 +10,12 @@ namespace TicTacToe
         {
             var game = new TicTacToeGame(
                 new ComputerPlayer(PlayerGlyph.Cross),
-                new TextStreamPlayer(PlayerGlyph.Naught, Console.In, Console.Out)
+                new TextPlayer(PlayerGlyph.Naught, Console.In, Console.Out)
                 );
             while (!game.IsDraw())
             {
                 game.NextTurn();
-                game.Render();
+                game.Render(new TextBoardRenderer(Console.Out));
                 var winner = game.Winner();
                 if (winner != null)
                 {
