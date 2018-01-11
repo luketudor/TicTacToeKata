@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\PlayerGlyph.cs" />
+    <Compile Include="Players\HumanPlayer.cs" />
     <Compile Include="Players\ComputerPlayer.cs" />
     <Compile Include="Players\DummyPlayer.cs" />
     <Compile Include="Players\IPlayer.cs" />

@@ -1,15 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TicTacToe.Enums;
+using TicTacToe.Players;
 
 namespace TicTacToe
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
+            var game = new TicTacToeGame(new ComputerPlayer(PlayerGlyph.Cross), new ComputerPlayer(PlayerGlyph.Naught));
+            while (!game.IsDraw())
+            {
+                game.NextTurn();
+                game.Render(Console.Out);
+                var winner = game.Winner();
+                if (winner != null)
+                {
+                    break;
+                }
+            }
         }
     }
 }

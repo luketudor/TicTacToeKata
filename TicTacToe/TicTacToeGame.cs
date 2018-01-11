@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using TicTacToe.Enums;
 using TicTacToe.Players;
@@ -54,6 +55,34 @@ namespace TicTacToe
         public bool IsDraw()
         {
             return _currentBoard.All(cell => cell != PlayerGlyph.Empty);
+        }
+
+        public void Render(TextWriter output)
+        {
+            string ParseEnum(PlayerGlyph glyph)
+            {
+                switch (glyph)
+                {
+                    case PlayerGlyph.Cross:
+                        return "X";
+                    case PlayerGlyph.Naught:
+                        return "O";
+                    case PlayerGlyph.Empty:
+                        return "_";
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(glyph), glyph, null);
+                }
+            }
+
+            for (var i = 0; i < 3; i++)
+            {
+                for (var j = 0; j < 3; j++)
+                {
+                    output.Write($@"{ParseEnum(_currentBoard[i * 3 + j])}|");
+                }
+                output.WriteLine();
+            }
+            output.WriteLine();
         }
     }
 }
