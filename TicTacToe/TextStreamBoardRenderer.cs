@@ -7,10 +7,22 @@ namespace TicTacToe
     public class TextStreamBoardRenderer : IBoardRenderer
     {
         private readonly TextWriter _output;
+        private readonly string _crossString;
+        private readonly string _naughtString;
+        private readonly string _emptyString;
+        private readonly string _cellSeparator;
+        private readonly int _boardWidth;
+        private readonly int _boardLength;
 
         public TextStreamBoardRenderer(TextWriter output)
         {
             _output = output;
+            _crossString = "X";
+            _naughtString = "O";
+            _emptyString = "_";
+            _cellSeparator = "|";
+            _boardWidth = 3;
+            _boardLength = 3;
         }
 
         public void Render(PlayerGlyph[] currentBoard)
@@ -20,21 +32,21 @@ namespace TicTacToe
                 switch (glyph)
                 {
                     case PlayerGlyph.Cross:
-                        return "X";
+                        return _crossString;
                     case PlayerGlyph.Naught:
-                        return "O";
+                        return _naughtString;
                     case PlayerGlyph.Empty:
-                        return "_";
+                        return _emptyString;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(glyph), glyph, null);
                 }
             }
 
-            for (var i = 0; i < 3; i++)
+            for (var i = 0; i < _boardLength; i++)
             {
-                for (var j = 0; j < 3; j++)
+                for (var j = 0; j < _boardWidth; j++)
                 {
-                    _output.Write($@"{ParseGlyph(currentBoard[i * 3 + j])}|");
+                    _output.Write($@"{ParseGlyph(currentBoard[i * _boardWidth + j])}{_cellSeparator}");
                 }
                 _output.WriteLine();
             }
