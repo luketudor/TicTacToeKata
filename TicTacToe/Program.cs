@@ -8,11 +8,13 @@ namespace TicTacToe
     {
         public static void Main(string[] args)
         {
-            var game = new TicTacToeGame(new ComputerPlayer(PlayerGlyph.Cross), new ComputerPlayer(PlayerGlyph.Naught));
+            var game = new TicTacToeGame(
+                new ComputerPlayer(PlayerGlyph.Cross),
+                new ComputerPlayer(PlayerGlyph.Naught));
             while (!game.IsDraw())
             {
                 game.NextTurn();
-                game.Render(Console.Out);
+                game.Render();
                 var winner = game.Winner();
                 if (winner != null)
                 {

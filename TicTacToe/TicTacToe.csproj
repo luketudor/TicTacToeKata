@@ -48,7 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TextStreamBoardRenderer.cs" />
     <Compile Include="Enums\PlayerGlyph.cs" />
+    <Compile Include="IBoardRenderer.cs" />
     <Compile Include="Players\HumanPlayer.cs" />
     <Compile Include="Players\ComputerPlayer.cs" />
     <Compile Include="Players\DummyPlayer.cs" />
