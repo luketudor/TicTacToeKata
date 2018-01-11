@@ -136,23 +136,5 @@ namespace TicTacToe.Test
 
             Assert.AreEqual(true, game.IsDraw());
         }
-
-        [Ignore("Exception removed")]
-        [Test]
-        public void ThrowArgumentExeceptionOnAttemptedOverwrite()
-        {
-            var game = new TicTacToeGame(
-                new StubPlayer(PlayerGlyph.Cross, 0),
-                new DummyPlayer(),
-                new[]
-                {
-                    O, _, _,
-                    _, _, _,
-                    _, _, _
-                },
-                true);
-
-            Assert.Catch<ArgumentException>(game.NextTurn, "Position is not empty");
-        }
     }
 }

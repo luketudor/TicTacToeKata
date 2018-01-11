@@ -9,27 +9,41 @@ namespace TicTacToe.Test
     [TestFixture]
     public class TextStreamPlayerShould
     {
-        [Ignore("Broken test")]
+        private const PlayerGlyph _ = PlayerGlyph.Empty;
+
         [Test]
         public void ReturnAnIntegerHumanMove()
         {
             Console.SetIn(new StringReader("0"));
 
+            var board = new[]
+            {
+                _, _, _,
+                _, _, _,
+                _, _, _
+            };
+
             var player = new TextStreamPlayer(PlayerGlyph.Cross, Console.In, Console.Out);
 
-            Assert.AreEqual(0, player.MakeMove(new PlayerGlyph[0]));
+            Assert.AreEqual(0, player.MakeMove(board));
         }
 
-        [Ignore("Broken test")]
         [Test]
         public void ReturnTwoIntegerHumanMoves()
         {
             Console.SetIn(new StringReader("0\n1"));
 
+            var board = new[]
+            {
+                _, _, _,
+                _, _, _,
+                _, _, _
+            };
+
             var player = new TextStreamPlayer(PlayerGlyph.Cross, Console.In, Console.Out);
 
-            Assert.AreEqual(0, player.MakeMove(new PlayerGlyph[0]));
-            Assert.AreEqual(1, player.MakeMove(new PlayerGlyph[0]));
+            Assert.AreEqual(0, player.MakeMove(board));
+            Assert.AreEqual(1, player.MakeMove(board));
         }
     }
 }
