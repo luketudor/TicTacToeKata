@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using TicTacToe.Enums;
 using TicTacToe.Players;
+using TicTacToe.Test.Stubs;
 
 namespace TicTacToe.Test
 {

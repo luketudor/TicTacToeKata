@@ -1,7 +1,8 @@
 ﻿using System;
 using TicTacToe.Enums;
+using TicTacToe.Players;
 
-namespace TicTacToe.Players
+namespace TicTacToe.Test.Stubs
 {
     public class DummyPlayer : IPlayer
     {

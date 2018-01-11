@@ -48,15 +48,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Test\Stubs\DummyPlayer.cs" />
+    <Compile Include="Test\Stubs\StubPlayer.cs" />
     <Compile Include="Test\TextStreamPlayerShould.cs" />
     <Compile Include="TextStreamBoardRenderer.cs" />
     <Compile Include="Enums\PlayerGlyph.cs" />
     <Compile Include="IBoardRenderer.cs" />
     <Compile Include="Players\TextStreamPlayer.cs" />
     <Compile Include="Players\ComputerPlayer.cs" />
-    <Compile Include="Players\DummyPlayer.cs" />
     <Compile Include="Players\IPlayer.cs" />
-    <Compile Include="Players\StubPlayer.cs" />
     <Compile Include="Test\PlayerShould.cs" />
     <Compile Include="Test\WinCheckerShould.cs" />
     <Compile Include="TicTacToeGame.cs" />
