@@ -40,13 +40,18 @@ namespace TicTacToe
 
         internal PlayerGlyph[] GetBoard() => _currentBoard;
 
-        public IPlayer Winner() =>
+        internal IPlayer Winner() =>
             _winChecker.HasPlayerWon(_currentBoard, _player1.GetGlyph())
             ? _player1
             : (_winChecker.HasPlayerWon(_currentBoard, _player2.GetGlyph()) ? _player2 : null);
 
-        public bool IsDraw() => _currentBoard.All(cell => cell != PlayerGlyph.Empty);
+        internal bool IsDraw() => _currentBoard.All(cell => cell != PlayerGlyph.Empty);
 
         public void Render(IBoardRenderer renderer) => renderer.Render(_currentBoard);
+
+        public bool IsOver()
+        {
+            return IsDraw() || Winner() != null;
+        }
     }
 }

@@ -12,17 +12,13 @@ namespace TicTacToe
             {
                 var game = new TicTacToeGame(
                             new ComputerPlayer(PlayerGlyph.Cross),
-                            new TextPlayer(PlayerGlyph.Naught, Console.In, Console.Out)
-                            );
-                while (!game.IsDraw())
+                            new TextPlayer(PlayerGlyph.Naught, Console.In, Console.Out));
+                var renderer = new TextBoardRenderer(Console.Out);
+
+                while (!game.IsOver())
                 {
                     game.NextTurn();
-                    game.Render(new TextBoardRenderer(Console.Out));
-                    var winner = game.Winner();
-                    if (winner != null)
-                    {
-                        break;
-                    }
+                    game.Render(renderer);
                 }
                 Console.WriteLine("Do you want to play again? y/n");
                 if (Console.ReadLine() != "y")
