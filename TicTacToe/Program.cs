@@ -8,16 +8,24 @@ namespace TicTacToe
     {
         public static void Main(string[] args)
         {
-            var game = new TicTacToeGame(
-                new ComputerPlayer(PlayerGlyph.Cross),
-                new TextPlayer(PlayerGlyph.Naught, Console.In, Console.Out)
-                );
-            while (!game.IsDraw())
+            while (true)
             {
-                game.NextTurn();
-                game.Render(new TextBoardRenderer(Console.Out));
-                var winner = game.Winner();
-                if (winner != null)
+                var game = new TicTacToeGame(
+                            new ComputerPlayer(PlayerGlyph.Cross),
+                            new TextPlayer(PlayerGlyph.Naught, Console.In, Console.Out)
+                            );
+                while (!game.IsDraw())
+                {
+                    game.NextTurn();
+                    game.Render(new TextBoardRenderer(Console.Out));
+                    var winner = game.Winner();
+                    if (winner != null)
+                    {
+                        break;
+                    }
+                }
+                Console.WriteLine("Do you want to play again? y/n");
+                if (Console.ReadLine() != "y")
                 {
                     break;
                 }
