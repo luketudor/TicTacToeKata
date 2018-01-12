@@ -50,7 +50,7 @@
   <ItemGroup>
     <Compile Include="Test\Stubs\DummyPlayer.cs" />
     <Compile Include="Test\Stubs\StubPlayer.cs" />
-    <Compile Include="Test\TextStreamPlayerShould.cs" />
+    <Compile Include="Test\TextPlayerShould.cs" />
     <Compile Include="TextBoardRenderer.cs" />
     <Compile Include="Enums\PlayerGlyph.cs" />
     <Compile Include="IBoardRenderer.cs" />

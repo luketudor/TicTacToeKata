@@ -7,7 +7,7 @@ using TicTacToe.Players;
 namespace TicTacToe.Test
 {
     [TestFixture]
-    public class TextStreamPlayerShould
+    public class TextPlayerShould
     {
         private const PlayerGlyph O = PlayerGlyph.Naught;
         private const PlayerGlyph _ = PlayerGlyph.Empty;
