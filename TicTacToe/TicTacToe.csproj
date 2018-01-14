@@ -48,7 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Test\Stubs\DummyPlayer.cs" />
     <Compile Include="Test\Stubs\StubPlayer.cs" />
     <Compile Include="Test\TextPlayerShould.cs" />
     <Compile Include="TextBoardRenderer.cs" />

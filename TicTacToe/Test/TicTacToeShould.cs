@@ -18,7 +18,7 @@ namespace TicTacToe.Test
         {
             var game = new TicTacToeGame(
                 new StubPlayer(PlayerGlyph.Cross, 0),
-                new DummyPlayer());
+                new StubPlayer(PlayerGlyph.Naught));
 
             var expectedBoard = new[]
             {
@@ -37,7 +37,7 @@ namespace TicTacToe.Test
         public void ReturnAnySecondMove()
         {
             var game = new TicTacToeGame(
-                new DummyPlayer(),
+                new StubPlayer(PlayerGlyph.Cross),
                 new StubPlayer(PlayerGlyph.Naught, 1),
                 new[]
                 {
@@ -114,10 +114,10 @@ namespace TicTacToe.Test
         public void ReturnNoDrawDeclarationOnFirstMove()
         {
             var game = new TicTacToeGame(
-                new DummyPlayer(),
-                new DummyPlayer());
+                new StubPlayer(PlayerGlyph.Cross),
+                new StubPlayer(PlayerGlyph.Naught));
 
-            Assert.AreEqual(false, game.IsDraw());
+            Assert.False(game.IsDraw());
         }
 
         [Test]
@@ -134,7 +134,7 @@ namespace TicTacToe.Test
                 },
                 true);
 
-            Assert.AreEqual(true, game.IsDraw());
+            Assert.True(game.IsDraw());
         }
     }
 }

@@ -15,6 +15,9 @@ namespace TicTacToe
                             new TextPlayer(PlayerGlyph.Naught, Console.In, Console.Out));
                 var renderer = new TextBoardRenderer(Console.Out);
 
+                game.RaiseDrawEvent += (sender, eventArgs) => Console.WriteLine("foobar");
+                game.RaiseWinEvent += (sender, winner) => Console.WriteLine($"winner is {winner}");
+
                 while (!game.IsOver())
                 {
                     game.NextTurn();

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using TicTacToe.Enums;
 using TicTacToe.Players;
 
@@ -11,6 +12,9 @@ namespace TicTacToe
         private readonly IPlayer _player2;
         private readonly WinChecker _winChecker;
         private bool _player1Turn;
+
+        public event EventHandler RaiseDrawEvent;
+        public event EventHandler<IPlayer> RaiseWinEvent;
 
         public TicTacToeGame(IPlayer player1, IPlayer player2) 
             : this(
@@ -31,11 +35,20 @@ namespace TicTacToe
             _winChecker = new WinChecker();
         }
 
-        public void NextTurn()
+        internal void NextTurn()
         {
             var currentPlayer = _player1Turn ? _player1 : _player2;
             _currentBoard[currentPlayer.MakeMove(_currentBoard)] = currentPlayer.GetGlyph();
             _player1Turn = !_player1Turn;
+            if (IsDraw())
+            {
+                RaiseDrawEvent(this, null);
+            }
+            var winner = Winner();
+            if (winner != null)
+            {
+                RaiseWinEvent(this, winner);
+            }
         }
 
         internal PlayerGlyph[] GetBoard() => _currentBoard;
@@ -47,7 +60,7 @@ namespace TicTacToe
 
         internal bool IsDraw() => _currentBoard.All(cell => cell != PlayerGlyph.Empty);
 
-        public void Render(IBoardRenderer renderer) => renderer.Render(_currentBoard);
+        internal void Render(IBoardRenderer renderer) => renderer.Render(_currentBoard);
 
         public bool IsOver()
         {
