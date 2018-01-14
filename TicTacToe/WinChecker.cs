@@ -14,50 +14,27 @@ namespace TicTacToe
             var numVerticalCols = 3;
             var numDiagonalRowLength = 3;
 
-            IEnumerable<IEnumerable<int>> WinningRows()
+            IEnumerable<IEnumerable<int>> WinningRowsIndices()
             {
-                IEnumerable<int> ForwardDiagonalRowIndices()
-                {
-                    for (var i = 0; i < numDiagonalRowLength; i++)
-                    {
-                        yield return i * 2 + 2;
-                    }
-                }
+                var diagonalRows = Enumerable.Range(0, numDiagonalRowLength);
+                var verticalRows = Enumerable.Range(0, numVerticalCols);
 
-                IEnumerable<int> BackDiagonalRowIndices()
-                {
-                    for (var i = 0; i < numDiagonalRowLength; i++)
-                    {
-                        yield return i * 4;
-                    }
-                }
+                var forwardDiagonalRowIndices = diagonalRows.Select(e => e * 2 + 2);
+                var backDiagonalRowIndices = diagonalRows.Select(e => e * 4);
 
-                IEnumerable<int> VerticalRowIndices(int horizontalRowNumber)
+                foreach (var horizontalRowNumber in Enumerable.Range(0, numHorizontalRows))
                 {
-                    for (var i = 0; i < numVerticalCols; i++)
-                    {
-                        yield return i * numVerticalCols + horizontalRowNumber;
-                    }
-                }
+                    var verticalRowIndices = verticalRows.Select(e => e * numVerticalCols + horizontalRowNumber);
+                    var horizontalRowIndices = verticalRows.Select(e => e + numVerticalCols * horizontalRowNumber);
 
-                IEnumerable<int> HorizontalRowIndices(int horizontalRowNumber)
-                {
-                    for (var i = 0; i < numVerticalCols; i++)
-                    {
-                        yield return i + numVerticalCols * horizontalRowNumber;
-                    }
+                    yield return horizontalRowIndices;
+                    yield return verticalRowIndices;
                 }
-
-                for (var i = 0; i < numHorizontalRows; i++)
-                {
-                    yield return HorizontalRowIndices(i);
-                    yield return VerticalRowIndices(i);
-                }
-                yield return BackDiagonalRowIndices();
-                yield return ForwardDiagonalRowIndices();
+                yield return backDiagonalRowIndices;
+                yield return forwardDiagonalRowIndices;
             }
 
-            _winningRowsIndices = WinningRows();
+            _winningRowsIndices = WinningRowsIndices();
         }
 
         public bool HasPlayerWon(PlayerGlyph[] currentBoard, PlayerGlyph player) => 
