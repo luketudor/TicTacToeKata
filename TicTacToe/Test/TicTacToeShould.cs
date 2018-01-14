@@ -140,5 +140,85 @@ namespace TicTacToe.Test
 
             Assert.True(game.IsDraw());
         }
+
+        [Test]
+        public void ShouldCallOnDrawEvent()
+        {
+            var game = new TicTacToeGame(
+                new StubPlayer(PlayerGlyph.Cross),
+                new StubPlayer(PlayerGlyph.Naught, 8),
+                new[]
+                {
+                    X, O, O,
+                    O, X, X,
+                    X, O, _
+                },
+                false);
+
+            var drawEventCalled = false;
+
+            game.RaiseDrawEvent += (sender, eventArgs) => drawEventCalled = true;
+
+            game.Run();
+
+            Assert.True(drawEventCalled);
+        }
+
+        [Test]
+        public void ShouldCallOnWinEvent()
+        {
+            var player1 = new StubPlayer(PlayerGlyph.Cross, 8);
+            var player2 = new StubPlayer(PlayerGlyph.Naught);
+
+            var game = new TicTacToeGame(
+                player1,
+                player2,
+                new[]
+                {
+                    X, O, O,
+                    O, X, X,
+                    X, O, _
+                },
+                true);
+
+            IPlayer winningPlayer = null;
+
+            game.RaiseWinEvent += (sender, winner) => winningPlayer = winner;
+
+            game.Run();
+
+            Assert.AreEqual(player1, winningPlayer);
+        }
+
+        [Test]
+        public void ShouldCallOnRenderEvent()
+        {
+            var game = new TicTacToeGame(
+                new StubPlayer(PlayerGlyph.Cross),
+                new StubPlayer(PlayerGlyph.Naught, 8),
+                new[]
+                {
+                    X, O, O,
+                    O, X, X,
+                    X, O, _
+                },
+                false);
+            game.RaiseDrawEvent += (sender, eventArgs) => { return; };
+
+            var expectedBoard = new[]
+                {
+                    X, O, O,
+                    O, X, X,
+                    X, O, O
+                };
+
+            PlayerGlyph[] actualBoard = null;
+
+            game.RaiseRenderEvent += (sender, board) => actualBoard = board;
+
+            game.Run();
+
+            CollectionAssert.AreEqual(expectedBoard, actualBoard);
+        }
     }
 }

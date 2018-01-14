@@ -41,15 +41,15 @@ namespace TicTacToe
             while(true)
             {
                 NextTurn();
-                RaiseRenderEvent(this, _currentBoard);
-                if (IsDraw())
-                {
-                    RaiseDrawEvent(this, EventArgs.Empty);
-                    break;
-                }
+                RaiseRenderEvent?.Invoke(this, _currentBoard);
                 if (Winner(out var winner))
                 {
                     RaiseWinEvent(this, winner);
+                    break;
+                }
+                if (IsDraw())
+                {
+                    RaiseDrawEvent(this, EventArgs.Empty);
                     break;
                 }
             }
