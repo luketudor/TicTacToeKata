@@ -15,6 +15,7 @@ namespace TicTacToe
 
         public event EventHandler RaiseDrawEvent;
         public event EventHandler<IPlayer> RaiseWinEvent;
+        public event EventHandler<PlayerGlyph[]> RaiseRenderEvent;
 
         public TicTacToeGame(IPlayer player1, IPlayer player2) 
             : this(
@@ -35,36 +36,44 @@ namespace TicTacToe
             _winChecker = new WinChecker();
         }
 
+        public void Run()
+        {
+            while(true)
+            {
+                NextTurn();
+                RaiseRenderEvent(this, _currentBoard);
+                if (IsDraw())
+                {
+                    RaiseDrawEvent(this, EventArgs.Empty);
+                    break;
+                }
+                if (Winner(out var winner))
+                {
+                    RaiseWinEvent(this, winner);
+                    break;
+                }
+            }
+        }
+
         internal void NextTurn()
         {
             var currentPlayer = _player1Turn ? _player1 : _player2;
             _currentBoard[currentPlayer.MakeMove(_currentBoard)] = currentPlayer.GetGlyph();
             _player1Turn = !_player1Turn;
-            if (IsDraw())
-            {
-                RaiseDrawEvent(this, null);
-            }
-            var winner = Winner();
-            if (winner != null)
-            {
-                RaiseWinEvent(this, winner);
-            }
         }
 
         internal PlayerGlyph[] GetBoard() => _currentBoard;
 
-        internal IPlayer Winner() =>
-            _winChecker.HasPlayerWon(_currentBoard, _player1.GetGlyph())
-            ? _player1
-            : (_winChecker.HasPlayerWon(_currentBoard, _player2.GetGlyph()) ? _player2 : null);
-
-        internal bool IsDraw() => _currentBoard.All(cell => cell != PlayerGlyph.Empty);
-
-        internal void Render(IBoardRenderer renderer) => renderer.Render(_currentBoard);
-
-        public bool IsOver()
+        internal bool Winner(out IPlayer winner)
         {
-            return IsDraw() || Winner() != null;
+            winner = _winChecker.HasPlayerWon(_currentBoard, _player1.GetGlyph()) 
+                ? _player1 
+                : _winChecker.HasPlayerWon(_currentBoard, _player2.GetGlyph())
+                ? _player2 
+                : null;
+            return winner != null;
         }
+
+        internal bool IsDraw() => !_currentBoard.Any(cell => cell == PlayerGlyph.Empty);
     }
 }
