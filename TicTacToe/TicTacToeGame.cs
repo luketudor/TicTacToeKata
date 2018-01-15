@@ -7,27 +7,24 @@ namespace TicTacToe
 {
     public class TicTacToeGame
     {
-        public event EventHandler RaiseDrawEvent;
-        public event EventHandler<AbstractPlayer> RaiseWinEvent;
-        public event EventHandler<PlayerGlyph[]> RaiseRenderEvent;
-
         private readonly PlayerGlyph[] _currentBoard;
         private readonly AbstractPlayer _player1;
         private readonly AbstractPlayer _player2;
         private readonly WinChecker _winChecker;
         private bool _player1Turn;
 
-        public TicTacToeGame(AbstractPlayer player1, AbstractPlayer player2) 
+        public TicTacToeGame(AbstractPlayer player1, AbstractPlayer player2)
             : this(
-                  player1,
-                  player2,
-                  Enumerable.Repeat(PlayerGlyph.Empty, 9).ToArray(),
-                  true
-                  )
+                player1,
+                player2,
+                Enumerable.Repeat(PlayerGlyph.Empty, 9).ToArray(),
+                true
+            )
         {
         }
 
-        internal TicTacToeGame(AbstractPlayer player1, AbstractPlayer player2, PlayerGlyph[] currentBoard, bool player1Turn)
+        internal TicTacToeGame(AbstractPlayer player1, AbstractPlayer player2, PlayerGlyph[] currentBoard,
+            bool player1Turn)
         {
             _player1 = player1;
             _player2 = player2;
@@ -35,6 +32,10 @@ namespace TicTacToe
             _player1Turn = player1Turn;
             _winChecker = new WinChecker();
         }
+
+        public event EventHandler RaiseDrawEvent;
+        public event EventHandler<AbstractPlayer> RaiseWinEvent;
+        public event EventHandler<PlayerGlyph[]> RaiseRenderEvent;
 
         public void Run()
         {
@@ -45,12 +46,12 @@ namespace TicTacToe
                 RaiseRenderEvent?.Invoke(this, _currentBoard);
                 if (IsWinner(out var winner))
                 {
-                    RaiseWinEvent(this, winner);
+                    RaiseWinEvent?.Invoke(this, winner);
                     break;
                 }
                 if (IsDraw())
                 {
-                    RaiseDrawEvent(this, EventArgs.Empty);
+                    RaiseDrawEvent?.Invoke(this, EventArgs.Empty);
                     break;
                 }
             }
@@ -63,18 +64,24 @@ namespace TicTacToe
             _player1Turn = !_player1Turn;
         }
 
-        internal PlayerGlyph[] GetBoard() => _currentBoard;
+        internal PlayerGlyph[] GetBoard()
+        {
+            return _currentBoard;
+        }
 
         internal bool IsWinner(out AbstractPlayer winner)
         {
-            winner = _winChecker.HasPlayerWon(_currentBoard, _player1.GetGlyph()) 
-                ? _player1 
+            winner = _winChecker.HasPlayerWon(_currentBoard, _player1.GetGlyph())
+                ? _player1
                 : _winChecker.HasPlayerWon(_currentBoard, _player2.GetGlyph())
-                ? _player2 
-                : null;
+                    ? _player2
+                    : null;
             return winner != null;
         }
 
-        internal bool IsDraw() => !_currentBoard.Any(cell => cell == PlayerGlyph.Empty);
+        internal bool IsDraw()
+        {
+            return !_currentBoard.Any(cell => cell == PlayerGlyph.Empty);
+        }
     }
 }

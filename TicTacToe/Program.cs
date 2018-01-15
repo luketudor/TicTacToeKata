@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TicTacToe.Enums;
 using TicTacToe.GameBoard;
 using TicTacToe.Players;
@@ -27,26 +28,24 @@ namespace TicTacToe
                 }
             }
 
-            IEnumerable<Mark> ConvertBoard(PlayerGlyph[] board)
+            IEnumerable<Mark> ConvertBoard(IEnumerable<PlayerGlyph> board)
             {
-                foreach(var glyph in board)
-                {
-                    yield return ConvertGlyph(glyph);
-                }
+                return board.Select(ConvertGlyph);
             }
 
             while (true)
             {
                 var game = new TicTacToeGame(
-                            new StupidAIPlayer(PlayerGlyph.Cross),
-                            new TextPlayer(PlayerGlyph.Naught, Console.In, Console.Error)
-                            );
+                    new StupidAIPlayer(PlayerGlyph.Cross),
+                    new TextPlayer(PlayerGlyph.Naught, Console.In, Console.Error)
+                );
                 var renderer = new TextBoardRenderer(Console.Out);
-                var ren2 = new ConsoleRenderer(); 
+                var ren2 = new ConsoleRenderer();
 
                 game.RaiseDrawEvent += (sender, eventArgs) => Console.WriteLine("Draw! Everyone loses!");
                 game.RaiseDrawEvent += (sender, eventArgs) => ren2.RenderGameIsADrawScreen();
-                game.RaiseWinEvent += (sender, winner) => Console.WriteLine($"Congratulations, {winner.GetGlyph()} player won!");
+                game.RaiseWinEvent += (sender, winner) =>
+                    Console.WriteLine($"Congratulations, {winner.GetGlyph()} player won!");
                 game.RaiseWinEvent += (sender, winner) => ren2.RenderWinGameScreen(ConvertGlyph(winner.GetGlyph()));
                 game.RaiseRenderEvent += (sender, board) => ren2.RenderBoard(new List<Mark>(ConvertBoard(board)));
 

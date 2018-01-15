@@ -13,7 +13,7 @@ namespace TicTacToe.Test.Stubs
 
         public StubPlayer(PlayerGlyph glyph, int whereToMove)
         {
-            this.glyph = glyph;
+            Glyph = glyph;
             _whereToMove = whereToMove;
         }
 

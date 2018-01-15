@@ -6,13 +6,13 @@ namespace TicTacToe.Renderers
 {
     public class TextBoardRenderer : IBoardRenderer
     {
-        private readonly TextWriter _output;
-        private readonly string _crossString;
-        private readonly string _naughtString;
-        private readonly string _emptyString;
-        private readonly string _cellSeparator;
-        private readonly int _boardWidth;
         private readonly int _boardLength;
+        private readonly int _boardWidth;
+        private readonly string _cellSeparator;
+        private readonly string _crossString;
+        private readonly string _emptyString;
+        private readonly string _naughtString;
+        private readonly TextWriter _output;
 
         public TextBoardRenderer(TextWriter output)
         {

@@ -58,7 +58,8 @@ namespace TicTacToe.Test
             var player = new TextPlayer(PlayerGlyph.Cross, new StringReader("0\n1"), stringWriter);
             player.MakeMove(board);
 
-            Assert.AreEqual($"That position is occupied, please try again{stringWriter.NewLine}", stringWriter.ToString());
+            Assert.AreEqual($"That position is occupied, please try again{stringWriter.NewLine}",
+                stringWriter.ToString());
         }
 
         [Test]
@@ -76,7 +77,8 @@ namespace TicTacToe.Test
             var player = new TextPlayer(PlayerGlyph.Cross, new StringReader("9\n1"), stringWriter);
             player.MakeMove(board);
 
-            Assert.AreEqual($"That index is out of bounds, please try again{stringWriter.NewLine}", stringWriter.ToString());
+            Assert.AreEqual($"That index is out of bounds, please try again{stringWriter.NewLine}",
+                stringWriter.ToString());
         }
 
         [Test]
@@ -94,7 +96,8 @@ namespace TicTacToe.Test
             var player = new TextPlayer(PlayerGlyph.Cross, new StringReader("-1\n1"), stringWriter);
             player.MakeMove(board);
 
-            Assert.AreEqual($"Negative indices are not allowed, please try again{stringWriter.NewLine}", stringWriter.ToString());
+            Assert.AreEqual($"Negative indices are not allowed, please try again{stringWriter.NewLine}",
+                stringWriter.ToString());
         }
 
         [Test]
@@ -112,7 +115,8 @@ namespace TicTacToe.Test
             var player = new TextPlayer(PlayerGlyph.Cross, new StringReader("2.0\n1"), stringWriter);
             player.MakeMove(board);
 
-            Assert.AreEqual($"Invalid format: Positive integers only, please try again{stringWriter.NewLine}", stringWriter.ToString());
+            Assert.AreEqual($"Invalid format: Positive integers only, please try again{stringWriter.NewLine}",
+                stringWriter.ToString());
         }
     }
 }

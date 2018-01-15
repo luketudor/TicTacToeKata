@@ -1,5 +1,4 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using TicTacToe.Enums;
 using TicTacToe.Players;
 using TicTacToe.Test.Stubs;
@@ -203,14 +202,13 @@ namespace TicTacToe.Test
                     X, O, _
                 },
                 false);
-            game.RaiseDrawEvent += (sender, eventArgs) => { return; };
 
             var expectedBoard = new[]
-                {
-                    X, O, O,
-                    O, X, X,
-                    X, O, O
-                };
+            {
+                X, O, O,
+                O, X, X,
+                X, O, O
+            };
 
             PlayerGlyph[] actualBoard = null;
 

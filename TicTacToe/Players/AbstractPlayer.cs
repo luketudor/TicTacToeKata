@@ -4,8 +4,13 @@ namespace TicTacToe.Players
 {
     public abstract class AbstractPlayer
     {
-        protected PlayerGlyph glyph;
-        public PlayerGlyph GetGlyph() => glyph;
+        protected PlayerGlyph Glyph;
+
+        public PlayerGlyph GetGlyph()
+        {
+            return Glyph;
+        }
+
         public abstract int MakeMove(PlayerGlyph[] board);
     }
 }

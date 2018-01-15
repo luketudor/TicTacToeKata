@@ -7,10 +7,12 @@ namespace TicTacToe.Players
     {
         public StupidAIPlayer(PlayerGlyph glyph)
         {
-            this.glyph = glyph;
+            Glyph = glyph;
         }
 
-        public override int MakeMove(PlayerGlyph[] board) =>
-            Array.IndexOf(board, PlayerGlyph.Empty);
+        public override int MakeMove(PlayerGlyph[] board)
+        {
+            return Array.IndexOf(board, PlayerGlyph.Empty);
+        }
     }
 }

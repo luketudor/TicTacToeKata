@@ -10,14 +10,14 @@ namespace TicTacToe.Players
 
         public TextPlayer(PlayerGlyph glyph, TextReader input, TextWriter output)
         {
-            this.glyph = glyph;
+            Glyph = glyph;
             _input = input;
             _output = output;
         }
 
         public override int MakeMove(PlayerGlyph[] board)
         {
-            while(true)
+            while (true)
             {
                 var parseSuccess = int.TryParse(_input.ReadLine(), out var position);
                 if (!parseSuccess)
