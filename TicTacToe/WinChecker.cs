@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TicTacToe.Enums;
 
@@ -16,22 +17,31 @@ namespace TicTacToe
 
             IEnumerable<IEnumerable<int>> WinningRowsIndices()
             {
-                var diagonalRows = Enumerable.Range(0, numDiagonalRowLength);
-                var verticalRows = Enumerable.Range(0, numVerticalCols);
+                Func<int, int> forwardDiagonalSelector = e => e * 2 + 2;
+                Func<int, int> backwardDiagonalSelector = e => e * 4;
 
-                var forwardDiagonalRowIndices = diagonalRows.Select(e => e * 2 + 2);
-                var backDiagonalRowIndices = diagonalRows.Select(e => e * 4);
+                var diagonalRows = Enumerable.Range(0, numDiagonalRowLength);
+
+                var forwardDiagonalRowIndices = diagonalRows.Select(forwardDiagonalSelector);
+                var backDiagonalRowIndices = diagonalRows.Select(backwardDiagonalSelector);
+
+                yield return backDiagonalRowIndices;
+                yield return forwardDiagonalRowIndices;
+
+
+                var verticalRows = Enumerable.Range(0, numVerticalCols);
 
                 foreach (var horizontalRowNumber in Enumerable.Range(0, numHorizontalRows))
                 {
-                    var verticalRowIndices = verticalRows.Select(e => e * numVerticalCols + horizontalRowNumber);
-                    var horizontalRowIndices = verticalRows.Select(e => e + numVerticalCols * horizontalRowNumber);
+                    Func<int, int> verticalRowSelector = e => e * numVerticalCols + horizontalRowNumber;
+                    Func<int, int> horizontalRowSelector = e => e + numVerticalCols * horizontalRowNumber;
+
+                    var verticalRowIndices = verticalRows.Select(verticalRowSelector);
+                    var horizontalRowIndices = verticalRows.Select(horizontalRowSelector);
 
                     yield return horizontalRowIndices;
                     yield return verticalRowIndices;
                 }
-                yield return backDiagonalRowIndices;
-                yield return forwardDiagonalRowIndices;
             }
 
             _winningRowsIndices = WinningRowsIndices();
