@@ -13,7 +13,8 @@ namespace TicTacToe
             {
                 var game = new TicTacToeGame(
                             new ComputerPlayer(PlayerGlyph.Cross),
-                            new TextPlayer(PlayerGlyph.Naught, Console.In, Console.Out));
+                            new TextPlayer(PlayerGlyph.Naught, Console.In, Console.Error
+                            ));
                 var renderer = new TextBoardRenderer(Console.Out);
 
                 game.RaiseDrawEvent += (sender, eventArgs) => Console.WriteLine("Draw! Everyone loses!");

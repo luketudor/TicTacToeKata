@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using TicTacToe.Enums;
-using TicTacToe.Renderers;
 
 namespace TicTacToe.Renderers
 {

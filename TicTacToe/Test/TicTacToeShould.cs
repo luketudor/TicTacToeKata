@@ -88,7 +88,7 @@ namespace TicTacToe.Test
                 new StubPlayer(PlayerGlyph.Cross),
                 new StubPlayer(PlayerGlyph.Naught));
 
-            game.Winner(out var winner);
+            game.IsWinner(out var winner);
 
             Assert.Null(winner);
         }
@@ -109,7 +109,7 @@ namespace TicTacToe.Test
                 },
                 true);
 
-            game.Winner(out var winner);
+            game.IsWinner(out var winner);
 
             Assert.AreEqual(player1, winner);
         }
