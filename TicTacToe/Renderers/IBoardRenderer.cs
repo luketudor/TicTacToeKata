@@ -1,6 +1,6 @@
 ﻿using TicTacToe.Enums;
 
-namespace TicTacToe
+namespace TicTacToe.Renderers
 {
     public interface IBoardRenderer
     {

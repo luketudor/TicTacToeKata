@@ -1,8 +1,9 @@
 ﻿using System;
 using System.IO;
 using TicTacToe.Enums;
+using TicTacToe.Renderers;
 
-namespace TicTacToe
+namespace TicTacToe.Renderers
 {
     public class TextBoardRenderer : IBoardRenderer
     {
