@@ -38,7 +38,8 @@ namespace TicTacToe
 
         public void Run()
         {
-            while(true)
+            RaiseRenderEvent?.Invoke(this, _currentBoard);
+            while (true)
             {
                 NextTurn();
                 RaiseRenderEvent?.Invoke(this, _currentBoard);
