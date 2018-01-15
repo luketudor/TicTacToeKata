@@ -12,24 +12,26 @@ namespace TicTacToe
     {
         public static void Main(string[] args)
         {
-            IEnumerable<Mark> Convert(PlayerGlyph[] board)
+            Mark ConvertGlyph(PlayerGlyph glyph)
+            {
+                switch (glyph)
+                {
+                    case PlayerGlyph.Cross:
+                        return Mark.Cross;
+                    case PlayerGlyph.Naught:
+                        return Mark.Naught;
+                    case PlayerGlyph.Empty:
+                        return Mark.Empty;
+                    default:
+                        throw new Exception();
+                }
+            }
+
+            IEnumerable<Mark> ConvertBoard(PlayerGlyph[] board)
             {
                 foreach(var glyph in board)
                 {
-                    switch(glyph)
-                    {
-                        case PlayerGlyph.Cross:
-                            yield return Mark.Cross;
-                            break;
-                        case PlayerGlyph.Naught:
-                            yield return Mark.Naught;
-                            break;
-                        case PlayerGlyph.Empty:
-                            yield return Mark.Empty;
-                            break;
-                        default:
-                            throw new Exception();
-                    }
+                    yield return ConvertGlyph(glyph);
                 }
             }
 
@@ -43,9 +45,12 @@ namespace TicTacToe
                 var ren2 = new ConsoleRenderer(); 
 
                 game.RaiseDrawEvent += (sender, eventArgs) => Console.WriteLine("Draw! Everyone loses!");
+                game.RaiseDrawEvent += (sender, eventArgs) => ren2.RenderGameIsADrawScreen();
                 game.RaiseWinEvent += (sender, winner) => Console.WriteLine($"Congratulations, {winner.GetGlyph()} player won!");
-                game.RaiseRenderEvent += (sender, board) => ren2.RenderBoard(new List<Mark>(Convert(board)));
+                game.RaiseWinEvent += (sender, winner) => ren2.RenderWinGameScreen(ConvertGlyph(winner.GetGlyph()));
+                game.RaiseRenderEvent += (sender, board) => ren2.RenderBoard(new List<Mark>(ConvertBoard(board)));
 
+                ren2.RenderWelcomeMessage();
                 game.Run();
 
                 Console.WriteLine("Do you want to play again? y/n");
