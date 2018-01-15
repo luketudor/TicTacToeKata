@@ -11,7 +11,7 @@ namespace TicTacToe.Test
         [Test]
         public void ReturnAnyPlayerMoveForEmptyBoard()
         {
-            var player = new ComputerPlayer(PlayerGlyph.Cross);
+            var player = new StupidAIPlayer(PlayerGlyph.Cross);
             var board = Enumerable.Repeat(PlayerGlyph.Empty, 9).ToArray();
 
             var actualMove = player.MakeMove(board);
@@ -23,7 +23,7 @@ namespace TicTacToe.Test
         [Test]
         public void ReturnAnyPlayerMoveForSecondTurnBoard()
         {
-            var player = new ComputerPlayer(PlayerGlyph.Naught);
+            var player = new StupidAIPlayer(PlayerGlyph.Naught);
             var board = Enumerable.Repeat(PlayerGlyph.Empty, 9).ToArray();
             board[0] = PlayerGlyph.Cross;
 

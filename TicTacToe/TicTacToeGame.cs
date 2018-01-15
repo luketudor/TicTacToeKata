@@ -8,16 +8,16 @@ namespace TicTacToe
     public class TicTacToeGame
     {
         public event EventHandler RaiseDrawEvent;
-        public event EventHandler<IPlayer> RaiseWinEvent;
+        public event EventHandler<AbstractPlayer> RaiseWinEvent;
         public event EventHandler<PlayerGlyph[]> RaiseRenderEvent;
 
         private readonly PlayerGlyph[] _currentBoard;
-        private readonly IPlayer _player1;
-        private readonly IPlayer _player2;
+        private readonly AbstractPlayer _player1;
+        private readonly AbstractPlayer _player2;
         private readonly WinChecker _winChecker;
         private bool _player1Turn;
 
-        public TicTacToeGame(IPlayer player1, IPlayer player2) 
+        public TicTacToeGame(AbstractPlayer player1, AbstractPlayer player2) 
             : this(
                   player1,
                   player2,
@@ -27,7 +27,7 @@ namespace TicTacToe
         {
         }
 
-        internal TicTacToeGame(IPlayer player1, IPlayer player2, PlayerGlyph[] currentBoard, bool player1Turn)
+        internal TicTacToeGame(AbstractPlayer player1, AbstractPlayer player2, PlayerGlyph[] currentBoard, bool player1Turn)
         {
             _player1 = player1;
             _player2 = player2;
@@ -65,7 +65,7 @@ namespace TicTacToe
 
         internal PlayerGlyph[] GetBoard() => _currentBoard;
 
-        internal bool IsWinner(out IPlayer winner)
+        internal bool IsWinner(out AbstractPlayer winner)
         {
             winner = _winChecker.HasPlayerWon(_currentBoard, _player1.GetGlyph()) 
                 ? _player1 

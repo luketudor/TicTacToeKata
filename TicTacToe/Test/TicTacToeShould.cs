@@ -181,7 +181,7 @@ namespace TicTacToe.Test
                 },
                 true);
 
-            IPlayer winningPlayer = null;
+            AbstractPlayer winningPlayer = null;
 
             game.RaiseWinEvent += (sender, winner) => winningPlayer = winner;
 

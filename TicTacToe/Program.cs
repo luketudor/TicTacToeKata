@@ -36,7 +36,7 @@ namespace TicTacToe
             while (true)
             {
                 var game = new TicTacToeGame(
-                            new ComputerPlayer(PlayerGlyph.Cross),
+                            new StupidAIPlayer(PlayerGlyph.Cross),
                             new TextPlayer(PlayerGlyph.Naught, Console.In, Console.Error)
                             );
                 var renderer = new TextBoardRenderer(Console.Out);

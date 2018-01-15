@@ -3,9 +3,8 @@ using TicTacToe.Players;
 
 namespace TicTacToe.Test.Stubs
 {
-    public class StubPlayer : IPlayer
+    public class StubPlayer : AbstractPlayer
     {
-        private readonly PlayerGlyph _glyph;
         private readonly int _whereToMove;
 
         public StubPlayer(PlayerGlyph glyph) : this(glyph, -1)
@@ -14,16 +13,11 @@ namespace TicTacToe.Test.Stubs
 
         public StubPlayer(PlayerGlyph glyph, int whereToMove)
         {
-            _glyph = glyph;
+            this.glyph = glyph;
             _whereToMove = whereToMove;
         }
 
-        public PlayerGlyph GetGlyph()
-        {
-            return _glyph;
-        }
-
-        public int MakeMove(PlayerGlyph[] board)
+        public override int MakeMove(PlayerGlyph[] board)
         {
             return _whereToMove;
         }

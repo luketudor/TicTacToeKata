@@ -51,14 +51,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Players\AbstractPlayer.cs" />
+    <Compile Include="Players\StupidAIPlayer.cs" />
     <Compile Include="Test\Stubs\StubPlayer.cs" />
     <Compile Include="Test\TextPlayerShould.cs" />
     <Compile Include="Renderers\TextBoardRenderer.cs" />
     <Compile Include="Enums\PlayerGlyph.cs" />
     <Compile Include="Renderers\IBoardRenderer.cs" />
     <Compile Include="Players\TextPlayer.cs" />
-    <Compile Include="Players\ComputerPlayer.cs" />
-    <Compile Include="Players\IPlayer.cs" />
     <Compile Include="Test\PlayerShould.cs" />
     <Compile Include="Test\WinCheckerShould.cs" />
     <Compile Include="TicTacToeGame.cs" />

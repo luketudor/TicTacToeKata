@@ -3,25 +3,19 @@ using TicTacToe.Enums;
 
 namespace TicTacToe.Players
 {
-    public class TextPlayer : IPlayer
+    public class TextPlayer : AbstractPlayer
     {
-        private readonly PlayerGlyph _glyph;
         private readonly TextReader _input;
         private readonly TextWriter _output;
 
         public TextPlayer(PlayerGlyph glyph, TextReader input, TextWriter output)
         {
-            _glyph = glyph;
+            this.glyph = glyph;
             _input = input;
             _output = output;
         }
 
-        public PlayerGlyph GetGlyph()
-        {
-            return _glyph;
-        }
-
-        public int MakeMove(PlayerGlyph[] board)
+        public override int MakeMove(PlayerGlyph[] board)
         {
             while(true)
             {
