@@ -16,12 +16,9 @@ namespace TicTacToe
 
             IEnumerable<IEnumerable<int>> WinningRowsIndices()
             {
-                int ForwardDiagonalSelector(int e) => e * 2 + 2;
-                int BackwardDiagonalSelector(int e) => e * 4;
-
                 var forwardDiagonalRowIndices =
-                    Enumerable.Range(0, numDiagonalRowLength).Select(ForwardDiagonalSelector);
-                var backDiagonalRowIndices = Enumerable.Range(0, numDiagonalRowLength).Select(BackwardDiagonalSelector);
+                    Enumerable.Range(0, numDiagonalRowLength).Select(e => e * 2 + 2);
+                var backDiagonalRowIndices = Enumerable.Range(0, numDiagonalRowLength).Select(e => e * 4);
 
                 yield return backDiagonalRowIndices;
                 yield return forwardDiagonalRowIndices;
@@ -29,11 +26,10 @@ namespace TicTacToe
 
                 foreach (var horizontalRowNumber in Enumerable.Range(0, numHorizontalRows))
                 {
-                    int VerticalRowSelector(int e) => e * numVerticalCols + horizontalRowNumber;
-                    int HorizontalRowSelector(int e) => e + numVerticalCols * horizontalRowNumber;
-
-                    var verticalRowIndices = Enumerable.Range(0, numVerticalCols).Select(VerticalRowSelector);
-                    var horizontalRowIndices = Enumerable.Range(0, numVerticalCols).Select(HorizontalRowSelector);
+                    var verticalRowIndices = Enumerable.Range(0, numVerticalCols)
+                        .Select(e => e * numVerticalCols + horizontalRowNumber);
+                    var horizontalRowIndices = Enumerable.Range(0, numVerticalCols)
+                        .Select(e => e + numVerticalCols * horizontalRowNumber);
 
                     yield return horizontalRowIndices;
                     yield return verticalRowIndices;
