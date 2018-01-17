@@ -14,22 +14,11 @@ namespace TicTacToe
         private bool _player1Turn;
 
         public TicTacToeGame(AbstractPlayer player1, AbstractPlayer player2)
-            : this(
-                player1,
-                player2,
-                Enumerable.Repeat(PlayerGlyph.Empty, 9).ToArray(),
-                true
-            )
-        {
-        }
-
-        internal TicTacToeGame(AbstractPlayer player1, AbstractPlayer player2, PlayerGlyph[] currentBoard,
-            bool player1Turn)
         {
             _player1 = player1;
             _player2 = player2;
-            _currentBoard = currentBoard;
-            _player1Turn = player1Turn;
+            _currentBoard = Enumerable.Repeat(PlayerGlyph.Empty, 9).ToArray();
+            _player1Turn = true;
             _winChecker = new WinChecker();
         }
 
@@ -57,19 +46,14 @@ namespace TicTacToe
             }
         }
 
-        internal void NextTurn()
+        private void NextTurn()
         {
             var currentPlayer = _player1Turn ? _player1 : _player2;
             _currentBoard[currentPlayer.MakeMove(_currentBoard)] = currentPlayer.GetGlyph();
             _player1Turn = !_player1Turn;
         }
 
-        internal PlayerGlyph[] GetBoard()
-        {
-            return _currentBoard;
-        }
-
-        internal bool IsWinner(out AbstractPlayer winner)
+        private bool IsWinner(out AbstractPlayer winner)
         {
             winner = _winChecker.HasPlayerWon(_currentBoard, _player1.GetGlyph())
                 ? _player1
@@ -79,7 +63,7 @@ namespace TicTacToe
             return winner != null;
         }
 
-        internal bool IsDraw()
+        private bool IsDraw()
         {
             return !_currentBoard.Any(cell => cell == PlayerGlyph.Empty);
         }

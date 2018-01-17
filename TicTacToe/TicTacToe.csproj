@@ -62,7 +62,6 @@
     <Compile Include="Test\PlayerShould.cs" />
     <Compile Include="Test\WinCheckerShould.cs" />
     <Compile Include="TicTacToeGame.cs" />
-    <Compile Include="Test\TicTacToeShould.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WinChecker.cs" />
