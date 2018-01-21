@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
 using TicTacToe.Enums;
 using TicTacToe.GameBoard;
 using TicTacToe.Players;
@@ -40,16 +41,16 @@ namespace TicTacToe
                     new TextPlayer(PlayerGlyph.Naught, Console.In, Console.Error)
                 );
                 var renderer = new TextBoardRenderer(Console.Out);
-                var ren2 = new ConsoleRenderer();
+                //var ren2 = new ConsoleRenderer();
 
                 game.RaiseDrawEvent += (sender, eventArgs) => Console.WriteLine("Draw! Everyone loses!");
-                game.RaiseDrawEvent += (sender, eventArgs) => ren2.RenderGameIsADrawScreen();
+                //game.RaiseDrawEvent += (sender, eventArgs) => ren2.RenderGameIsADrawScreen();
                 game.RaiseWinEvent += (sender, winner) =>
                     Console.WriteLine($"Congratulations, {winner.GetGlyph()} player won!");
-                game.RaiseWinEvent += (sender, winner) => ren2.RenderWinGameScreen(ConvertGlyph(winner.GetGlyph()));
-                game.RaiseRenderEvent += (sender, board) => ren2.RenderBoard(new List<Mark>(ConvertBoard(board)));
-
-                ren2.RenderWelcomeMessage();
+                //game.RaiseWinEvent += (sender, winner) => ren2.RenderWinGameScreen(ConvertGlyph(winner.GetGlyph()));
+                //game.RaiseRenderEvent += (sender, board) => ren2.RenderBoard(new List<Mark>(ConvertBoard(board)));
+                game.RaiseRenderEvent += (sender, board) => renderer.Render(board);
+                //ren2.RenderWelcomeMessage();
                 game.Run();
 
                 Console.WriteLine("Do you want to play again? y/n");

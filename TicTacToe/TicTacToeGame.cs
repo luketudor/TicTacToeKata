@@ -8,12 +8,12 @@ namespace TicTacToe
     public class TicTacToeGame
     {
         private readonly PlayerGlyph[] _currentBoard;
-        private readonly AbstractPlayer _player1;
-        private readonly AbstractPlayer _player2;
+        private readonly BasePlayer _player1;
+        private readonly BasePlayer _player2;
         private readonly WinChecker _winChecker;
         private bool _player1Turn;
 
-        public TicTacToeGame(AbstractPlayer player1, AbstractPlayer player2)
+        public TicTacToeGame(BasePlayer player1, BasePlayer player2)
         {
             _player1 = player1;
             _player2 = player2;
@@ -23,7 +23,7 @@ namespace TicTacToe
         }
 
         public event EventHandler RaiseDrawEvent;
-        public event EventHandler<AbstractPlayer> RaiseWinEvent;
+        public event EventHandler<BasePlayer> RaiseWinEvent;
         public event EventHandler<PlayerGlyph[]> RaiseRenderEvent;
 
         public void Run()
@@ -53,7 +53,7 @@ namespace TicTacToe
             _player1Turn = !_player1Turn;
         }
 
-        private bool IsWinner(out AbstractPlayer winner)
+        private bool IsWinner(out BasePlayer winner)
         {
             winner = _winChecker.HasPlayerWon(_currentBoard, _player1.GetGlyph())
                 ? _player1
@@ -65,7 +65,7 @@ namespace TicTacToe
 
         private bool IsDraw()
         {
-            return !_currentBoard.Any(cell => cell == PlayerGlyph.Empty);
+            return _currentBoard.All(cell => cell != PlayerGlyph.Empty);
         }
     }
 }

@@ -3,7 +3,7 @@ using TicTacToe.Enums;
 
 namespace TicTacToe.Players
 {
-    public class StupidAIPlayer : AbstractPlayer
+    public class StupidAIPlayer : BasePlayer
     {
         public StupidAIPlayer(PlayerGlyph glyph)
         {

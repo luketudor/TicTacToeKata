@@ -51,7 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Players\AbstractPlayer.cs" />
+    <Compile Include="Players\BasePlayer.cs" />
     <Compile Include="Players\StupidAIPlayer.cs" />
     <Compile Include="Test\Stubs\StubPlayer.cs" />
     <Compile Include="Test\TextPlayerShould.cs" />

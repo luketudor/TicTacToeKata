@@ -2,7 +2,7 @@ using TicTacToe.Enums;
 
 namespace TicTacToe.Players
 {
-    public abstract class AbstractPlayer
+    public abstract class BasePlayer
     {
         protected PlayerGlyph Glyph;
 

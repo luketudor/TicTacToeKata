@@ -1,12 +1,17 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using TicTacToe.Enums;
 
 namespace TicTacToe.Players
 {
-    public class TextPlayer : AbstractPlayer
+    public class TextPlayer : BasePlayer
     {
         private readonly TextReader _input;
         private readonly TextWriter _output;
+
+        public TextPlayer(PlayerGlyph glyph) : this(glyph, Console.In, Console.Error)
+        {
+        }
 
         public TextPlayer(PlayerGlyph glyph, TextReader input, TextWriter output)
         {
