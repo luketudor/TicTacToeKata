@@ -53,13 +53,11 @@
   <ItemGroup>
     <Compile Include="Players\BasePlayer.cs" />
     <Compile Include="Players\StupidAIPlayer.cs" />
-    <Compile Include="Test\Stubs\StubPlayer.cs" />
     <Compile Include="Test\TextPlayerShould.cs" />
     <Compile Include="Renderers\TextBoardRenderer.cs" />
     <Compile Include="Enums\PlayerGlyph.cs" />
     <Compile Include="Renderers\IBoardRenderer.cs" />
     <Compile Include="Players\TextPlayer.cs" />
-    <Compile Include="Test\PlayerShould.cs" />
     <Compile Include="Test\WinCheckerShould.cs" />
     <Compile Include="TicTacToeGame.cs" />
     <Compile Include="Program.cs" />
